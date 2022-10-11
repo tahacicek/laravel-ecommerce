@@ -14,7 +14,9 @@
 
     <link rel="stylesheet" href="{{ asset('admin') }}/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/vendors/base/vendor.bundle.base.css">
-    <!-- endinject -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('admin') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <!-- End plugin css for this page -->
@@ -22,8 +24,9 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
-    @livewireStyles
 
+    @yield('css')
+    @livewireStyles
 </head>
 
 <body>
@@ -41,12 +44,6 @@
             <!-- main-panel ends -->
         </div>
     </div>
-
-
-
-
-
-
     <!-- plugins:js -->
     <script src="{{ asset('admin') }}/vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -69,6 +66,7 @@
 
     <script src="{{ asset('admin') }}/js/jquery.cookie.js" type="text/javascript"></script>
     @livewireScripts
+    @yield('scripts')
 </body>
 
 </html>

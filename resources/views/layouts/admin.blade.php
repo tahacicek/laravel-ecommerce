@@ -66,7 +66,7 @@
 
     <script src="{{ asset('admin') }}/js/jquery.cookie.js" type="text/javascript"></script>
     @livewireScripts
-    @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>

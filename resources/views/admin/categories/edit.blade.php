@@ -32,13 +32,13 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.category.store') }}" class="forms-sample"
+                        <form method="POST" action="{{ route('admin.category.update', $category->id) }}" class="forms-sample"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control p-input @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" autocomplete="name" autofocus
+                                    name="name" value="{{ $category->name }}" autocomplete="name" autofocus
                                     placeholder="Category name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label for="slug">Slug</label>
                                 <input type="text" class="form-control p-input @error('slug') is-invalid @enderror"
-                                    name="slug" value="{{ old('slug') }}" autocomplete="slug" autofocus
+                                    name="slug" value="{{ $category->slug }}" autocomplete="slug" autofocus
                                     placeholder="Category slug">
                                 @error('slug')
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea type="text" class="form-control p-input @error('description') is-invalid @enderror" name="description"
-                                   autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                                   autocomplete="description" autofocus>{{ $category->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -68,10 +68,12 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                            <img id="imagecategory" src="{{ asset('/uploads/category/' . $category->image) }}" width="250px" height="250px" class="mx-auto d-block" alt="">
                                 <label for="image">İmage</label>
-                                <input type="file" class="form-control p-input @error('image') is-invalid @enderror"
-                                    name="image" value="{{ old('image') }}" autocomplete="image" autofocus
+                                <input id="imageinput" type="file" class="form-control p-input @error('image') is-invalid @enderror"
+                                    name="image" value="{{ $category->image }}" autocomplete="image" autofocus
                                     placeholdher="Category image">
+
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -86,7 +88,7 @@
                                 <label for="meta_keyword">Meta Keyword</label>
                                 <input type="text"
                                     class="form-control p-input @error('meta_keyword') is-invalid @enderror"
-                                    name="meta_keyword" value="{{ old('meta_keyword') }}" autocomplete="meta_keyword"
+                                    name="meta_keyword" value="{{ $category->meta_keyword }}" autocomplete="meta_keyword"
                                     autofocus placeholder="meta_keyword">
                                 @error('meta_keyword')
                                     <span class="invalid-feedback" role="alert">
@@ -98,7 +100,7 @@
                                 <label for="meta_description">Meta Description</label>
                                 <input type="text"
                                     class="form-control p-input @error('meta_description') is-invalid @enderror"
-                                    name="meta_description" value="{{ old('meta_description') }}"
+                                    name="meta_description" value="{{ $category->meta_description }}"
                                     autocomplete="meta_description" autofocus placeholder="Meta Description">
                                 @error('meta_description')
                                     <span class="invalid-feedback" role="alert">
@@ -109,7 +111,7 @@
                             <div class="form-group">
                                 <label for="meta_title">Meta Title</label>
                                 <input type="text" class="form-control p-input @error('meta_title') is-invalid @enderror"
-                                    name="meta_title" value="{{ old('meta_title') }}" autocomplete="meta_title" autofocus
+                                    name="meta_title" value="{{ $category->meta_title }}" autocomplete="meta_title" autofocus
                                     placeholder="Meta Title">
                                 @error('meta_title')
                                     <span class="invalid-feedback" role="alert">
@@ -118,10 +120,10 @@
                                 @enderror
                             </div>
                             <div class="form-group form-check-primary mt-5">
-                                <label class="" for="status">Status</label>
+                                <label class="" name="status" for="status">Status</label>
                                 <input type="checkbox"
                                     class="col-md-4 form-check-input p-input @error('status') is-invalid @enderror"
-                                    name="status" value="1" autocomplete="status" autofocus
+                                    name="status" {{ $category->status == 1 ? "checked" : " " }} value="1" autocomplete="status" autofocus
                                     placeholder="Category status">
                                 @error('status')
                                     <span class="invalid-feedback" role="alert">
@@ -138,31 +140,19 @@
             </div>
         </div>
     </div>
+
     {{-- content-wrapper ends --}}
 @endsection
-
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"></script>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
     <script>
-        function init() {
-            // On click of maximize, switch data attribute of window-content and covert whole row into column.
-            $("[data-widget='maximize']").click(function() {
-                var $overlay = $('.custom-overlay');
-                var $content = $('.row-content');
-                if ($overlay.is(':visible')) {
-                    $content.toggleClass('row-content column-content');
-                    $('.main-panel').toggleClass('main-panel-full custom-overlay');
-                } else {
-                    $('.main-panel').toggleClass('main-panel-full custom-overlay');
-                    $content.toggleClass('row-content column-content');
+        $(document).ready(function() {
+            $('#imageinput').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagecategory').attr('src', e.target.result);
                 }
+                reader.readAsDataURL(e.target.files['0']);
             });
-
-            feather.replace();
-        }
-        window.onload = init;
+        });
     </script>
 @endsection

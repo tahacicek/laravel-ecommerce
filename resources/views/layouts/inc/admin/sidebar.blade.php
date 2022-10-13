@@ -9,7 +9,7 @@
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                 aria-controls="ui-basic">
-                <i class="mdi mdi-circle-outline menu-icon"></i>
+                <i class="mdi mdi-cards menu-icon"></i>
                 <span class="menu-title">Kategori</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -23,24 +23,24 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
-                <i class="mdi mdi-circle-outline menu-icon"></i>
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false"
+                aria-controls="ui-basic2">
+                <i class="mdi mdi-tag-heart menu-icon"></i>
                 <span class="menu-title">Ürün</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="ui-basic2">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.category.index') }}">Kategorileri
+                    <li class="nav-item"> <a class="nav-link" href="">Ürünleri
                             Görüntüle</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.category.create') }}">Kategori
+                    <li class="nav-item"> <a class="nav-link" href="">Ürün
                             Ekle</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.brands.index') }}">
-                <i class="mdi mdi mdi-pentagon-outline menu-icon"></i>
+                <i class="mdi mdi mdi-polymer menu-icon"></i>
                 <span class="menu-title">Markalar</span>
             </a>
         </li>

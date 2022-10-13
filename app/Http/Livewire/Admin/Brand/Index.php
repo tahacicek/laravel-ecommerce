@@ -12,7 +12,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $name, $slug, $status;
+    public $name, $slug, $status, $brand_id;
 
     public function rules(){
         return[
@@ -43,8 +43,46 @@ class Index extends Component
             'status' => $this->status == true ? 1 : 0,
         ]);
         session()->flash('message', 'Brand Created Successfully');
+        toastr()->success($this->name . " " . 'Başarıyla Oluşturuldu');
+
         $this->dispatchBrowserEvent("close-modal");
         $this->resetInput();
 
+    }
+
+    public function editBrand(int $brand_id){
+        $this->brand_id = $brand_id;
+        $brand = Brand::findOrFail($brand_id);
+        $this->name = $brand->name;
+        $this->slug = $brand->slug;
+        $this->status = $brand->status;
+    }
+
+    public function updateBrand(){
+        $validatedData = $this->validate();
+        Brand::findOrFail($this->brand_id)->update([
+            'name' => $this->name,
+            'slug' => Str::slug($this->slug),
+            'status' => $this->status == true ? 1 : 0,
+        ]);
+        session()->flash('message', 'Brand Updated Successfully');
+        toastr()->success($this->name . " " . 'Başarıyla Güncellendi');
+        $this->dispatchBrowserEvent("close-modal");
+        $this->resetInput();
+    }
+
+    public function deleteBrand($id){
+        $brand = Brand::find($id);
+        $brand->delete();
+        session()->flash('message', 'Brand Deleted Successfully');
+        $this->dispatchBrowserEvent("close-modal");
+    }
+
+    public function closeModal(){
+        $this->dispatchBrowserEvent("close-modal");
+    }
+
+    public function openModal(){
+        $this->dispatchBrowserEvent("open-modal");
     }
 }

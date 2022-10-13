@@ -52,11 +52,11 @@
                                         <td> {{ $brand->slug }} </td>
                                         <td> {{ $brand->status == 1 ? 'Pasif' : 'Yayında' }}</td>
                                         <td>
-                                            <a href="{{ route('admin.brand.edit', $brand->id) }}"
-                                                class="btn btn-primary">
+                                            <a data-bs-toggle="modal" data-bs-target="#updateBrandModal" href="edit"
+                                            wire:click="editBrand({{ $brand->id }})"  class="btn btn-primary">
                                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                             </a>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            <a href="delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
                                                 wire:click="deletebrand({{ $brand->id }})" class="btn btn-danger">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>
@@ -82,6 +82,8 @@
     <script>
         window.addEventListener('close-modal', event => {
             $('#addBrandModal').modal('hide');
+            $('#updateBrandModal').modal('hide');
+
         });
     </script>
     <script>

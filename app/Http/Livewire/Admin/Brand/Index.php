@@ -26,6 +26,7 @@ class Index extends Component
         $this->name = null;
         $this->slug = null;
         $this->status = null;
+        $this->brand_id = null;
     }
 
     public function render()
@@ -71,11 +72,16 @@ class Index extends Component
         $this->resetInput();
     }
 
-    public function deleteBrand($id){
-        $brand = Brand::find($id);
-        $brand->delete();
+    public function deleteBrand($brand_id){
+      $this->brand_id = $brand_id;
+    }
+
+    public function destroyBrand(){
+        Brand::findOrFail($this->brand_id)->delete();
         session()->flash('message', 'Brand Deleted Successfully');
+        toastr()->success($this->name . " " . 'Başarıyla Silindi');
         $this->dispatchBrowserEvent("close-modal");
+        $this->resetInput();
     }
 
     public function closeModal(){
@@ -85,4 +91,5 @@ class Index extends Component
     public function openModal(){
         $this->dispatchBrowserEvent("open-modal");
     }
+
 }

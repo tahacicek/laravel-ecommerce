@@ -56,8 +56,8 @@
                                             wire:click="editBrand({{ $brand->id }})"  class="btn btn-primary">
                                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                             </a>
-                                            <a href="delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                wire:click="deletebrand({{ $brand->id }})" class="btn btn-danger">
+                                            <a href="delete" data-bs-toggle="modal" data-bs-target="#deleteBrandModal"
+                                                wire:click="deleteBrand({{ $brand->id }})" class="btn btn-danger">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -83,7 +83,7 @@
         window.addEventListener('close-modal', event => {
             $('#addBrandModal').modal('hide');
             $('#updateBrandModal').modal('hide');
-
+            $('#deleteBrandModal').modal('hide');
         });
     </script>
     <script>

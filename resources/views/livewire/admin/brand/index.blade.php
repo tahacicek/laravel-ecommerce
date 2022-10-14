@@ -93,4 +93,11 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#deleteclick').click(function() {
+                $('#updateBrandModal').modal('hide');
+            });
+        });
+    </script>
 @endpush

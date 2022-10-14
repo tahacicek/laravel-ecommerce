@@ -1,10 +1,10 @@
 <!-- Modal -->
-<div wire:ignore.self class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div wire:ignore.self class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Marka Ekle</h5>
+                <h5 class="modal-title" id="addBrandModalLabel">Marka Ekle</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form wire:submit.prevent="storeBrand">
@@ -63,7 +63,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Marka Düzenle</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Güncellenen Marka:   {{ $this->name }}</h5>
                 <button type="button" class="btn-close" wire:clik="closeModal" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -129,7 +129,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"  id="exampleModalLabel">{{ $this->name }}Marka Sil</h4>
+                <h4 class="modal-title"  id="exampleModalLabel">Silinen Marka: {{ $this->name }}</h4>
                 <button type="button" class="btn-close" wire:clik="closeModal" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>

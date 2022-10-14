@@ -13,6 +13,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $name, $slug, $status, $brand_id;
+    public $updateMode = false;
 
     public function rules(){
         return[
@@ -45,7 +46,6 @@ class Index extends Component
         ]);
         session()->flash('message', 'Brand Created Successfully');
         toastr()->success($this->name . " " . 'Başarıyla Oluşturuldu');
-
         $this->dispatchBrowserEvent("close-modal");
         $this->resetInput();
 
@@ -69,6 +69,8 @@ class Index extends Component
         session()->flash('message', 'Brand Updated Successfully');
         toastr()->success($this->name . " " . 'Başarıyla Güncellendi');
         $this->dispatchBrowserEvent("close-modal");
+
+
         $this->resetInput();
     }
 

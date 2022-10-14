@@ -31,9 +31,9 @@
             </a>
             <div class="collapse" id="ui-basic2">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="">Ürünleri
-                            Görüntüle</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="">Ürün
+                    <li class=""> <a class="nav-link" href="{{ route("admin.product.index") }}">Ürünleri
+                            Görüntüle  </a></li>
+                    <li class=""> <a class="nav-link" href="{{ route("admin.product.create") }}">Ürün
                             Ekle</a></li>
                 </ul>
             </div>

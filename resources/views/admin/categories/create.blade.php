@@ -58,7 +58,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label class="form-label" for="description">Description</label>
                                 <textarea type="text" class="form-control p-input @error('description') is-invalid @enderror" name="description"
                                    autocomplete="description" autofocus>{{ old('description') }}</textarea>
                                 @error('description')

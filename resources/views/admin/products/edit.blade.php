@@ -6,12 +6,15 @@
                 <div class="d-flex align-items-end flex-wrap">
                     <div class="me-md-3 me-xl-5">
                         <h2>Ürünler</h2>
-                        <p class="mb-md-0">Bu sayfada kategori oluşturuluyor.</p>
+                        <p class="mb-md-0">Bu sayfada ürün oluşturuluyor.</p>
                     </div>
                     <div class="d-flex">
-                        <i class="mdi mdi-home text-muted hover-cursor"></i>
-                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a class="text-dark"
-                                href="{{ route('admin.product.index') }}">Kategoriler</a>&nbsp;/&nbsp;Oluştur</p>
+                        <a href="{{ route("admin.") }}"><i class="mdi mdi-home text-muted hover-cursor"></i></a>
+                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a class="btn btn-sm btn-secondary"
+                                href="{{ route('admin.product.index') }}">Ürünler</a>&nbsp;/&nbsp;<button
+                                class="btn btn-sm btn-secondary">
+                                Notifications
+                            </button></p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
@@ -24,7 +27,7 @@
                     <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
                         <i class="mdi mdi-plus text-muted"></i>
                     </button>
-                    <a class="btn btn-primary mt-2 mt-xl-0" href="{{ route('admin.product.index') }}">Kategorileri
+                    <a class="btn btn-primary mt-2 mt-xl-0" href="{{ route('admin.product.index') }}">Ürünleri
                         Görüntüle</a>
                 </div>
             </div>
@@ -84,8 +87,8 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">Ürün adı</label>
-                                <input type="text" class="form-control" name="name" value="{{ $product->name }}"
-                                    autocomplete="name" autofocus>
+                                <input type="text" class="form-control text-dark" name="name"
+                                    value="{{ $product->name }}" autocomplete="name" autofocus>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -106,8 +109,9 @@
                                 <label for="brand">Ürün kategorisi</label>
                                 <select name="brand" class="form-select">
                                     @foreach ($brands as $brand)
-                                        <option value="{{ $brand->name }}" {{ $brand->name == $product->brand ? "selected" : ""}} >
-                                           {{ $brand->name }}
+                                        <option value="{{ $brand->name }}"
+                                            {{ $brand->name == $product->brand ? 'selected' : '' }}>
+                                            {{ $brand->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -200,22 +204,22 @@
                                     </span>
                                 @enderror
                             </div>
-                           <div class="row">
-                            <div class="col-md-1 float-start">
-                                <input type="checkbox" name="status" {{ $product->status == 1 ? "checked":"" }} class="btn-check" id="status"
-                                    autocomplete="off">
-                                <label class="btn btn-outline-primary" for="status">Status</label><br>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-1 float-start">
+                                    <input type="checkbox" name="status" {{ $product->status == 1 ? 'checked' : '' }}
+                                        class="btn-check" id="status" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="status">Status</label><br>
+                                </div>
 
-                            <div class="col-md-1">
-                                <input type="checkbox" name="trending" {{ $product->trending == 1 ? "checked":"" }} class="btn-check" id="trending"
-                                    autocomplete="off">
-                                <label class="btn btn-outline-primary" for="trending">Trending</label><br>
+                                <div class="col-md-1">
+                                    <input type="checkbox" name="trending" {{ $product->trending == 1 ? 'checked' : '' }}
+                                        class="btn-check" id="trending" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="trending">Trending</label><br>
+                                </div>
+                                <small id="passwordHelpBlock" class="mb-5 form-text text-muted">
+                                    Ürünün yayınlanmasını ve trend olmasını istiyorsanız kutucukları boş bırakınız.
+                                </small>
                             </div>
-                            <small id="passwordHelpBlock" class="mb-5 form-text text-muted">
-                                Ürünün yayınlanmasını ve trend olmasını istiyorsanız kutucukları boş bırakınız.
-                              </small>
-                           </div>
 
                         </div>
                         <div class="tab-pane fade" id="pills-image" role="tabpanel" aria-labelledby="image">
@@ -230,6 +234,17 @@
                                                 <strong>{{ $image }}</strong>
                                             </span>
                                         @enderror
+                                        <div class="mt-4 text-center">
+                                            @if($product->productImages)
+                                                @foreach($product->productImages as $image)
+                                                    <img src="{{ asset($image->image) }}" class="me-4" width="100px"
+                                                        height="100px" alt=""/>
+                                                @endforeach
+                                            @else
+
+                                                <h5>Kaydedilen Resim Yok</h5>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>

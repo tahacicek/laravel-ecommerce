@@ -50,17 +50,17 @@ class ProductController extends Controller
             $i = 1;
             foreach ($request->file('image') as $imageFile) {
                 $extention = $imageFile->getClientOriginalName();
-                $filename = time() . $i++ . '.' . $extention;
+                $filename = time().$i++.'.'.$extention;
                 $imageFile->move($uploadPath, $filename);
-                $finalImagePathName = $uploadPath . "-" . $filename;
+                $finalImagePathName = $uploadPath."-".$filename;
                 $product->productImages()->create([
                     'product_id' => $product->id,
                     'image' => $finalImagePathName,
                 ]);
             }
         }
-        return redirect()->route('admin.products.index');
-        toastr()->success('Product created successfully');
+        return redirect()->route('admin.product.index')->with('success', 'Ürün Başarıyla Oluşturuldu.');
+
     }
 
     public function edit(int $product_id)

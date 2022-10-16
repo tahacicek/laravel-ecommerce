@@ -33,177 +33,200 @@
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
-                {{-- <form class="forms-sample" method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form class="forms-sample" method="POST" action="{{ route('admin.product.store') }}"
+                    enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group
-                    @error('product_name')
-                        has-danger
-                    @enderror
-                    ">
-                        <label for="product_name">Ad</label>
-                        <input type="text" class="form-control @error('product_name') is-invalid @enderror" name="product_name" placeholder="Ürün adını giriniz...">
-                        @error('product_name')
-                            <label class="error mt-2 text-danger">{{ $message }}</label>
-                        @enderror
-                    </div>
-                    <div class="form-group
-                    @error('description')
-                        has-danger
-                    @enderror
-                    ">
-                        <label  for="description">Açıklama</label>
-                        <textarea name="description" id="description" rows="10" class="form-control @error('description') is-invalid @enderror"></textarea>
-                        @error('description')
-                            <label class="error mt-2 text-danger">{{ $message }}</label>
-                        @enderror
-                    </div>
-                    <div class="form-group
-                    @error('price')
-                        has-danger
-                    @enderror
-                    ">
-                        <label for="price">Fiyat</label>
-                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price">
-                        @error('price')
-                            <label class="error mt-2 text-danger">{{ $message }}</label>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="file">Dosya Seç</label>
-                        <input type="file" name="file" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                            <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Dosya Yükle</button>
-                            </span>
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                aria-selected="true">Home</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="seo-tag" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">SEO
+                                Tags</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="detaylar" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                                type="button" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">Detaylar</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="image" data-bs-toggle="pill" data-bs-target="#pills-image"
+                                type="button" role="tab" aria-controls="pills-image" aria-selected="false">Ürün
+                                Görseli</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
+                            <div class="form-group mb-3">
+                                <label for="category_id">Ürün kategorisi</label>
+                                <select name="category_id" class="form-select">
+                                    <option value="" disabled selected>Ürün kategori seçiniz...</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="name">Ürün adı</label>
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
+                                    autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="slug">Slug</label>
+                                <input type="text" class="form-control" name="slug" value="{{ old('slug') }}"
+                                    autocomplete="slug" autofocus>
+                                @error('slug')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="brand">Ürün kategorisi</label>
+                                <select name="brand" class="form-select">
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->name }}">
+                                            {{ $brand->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="small_description">Açıklama</label>
+                                <textarea type="text" class="form-control p-input @error('small_description') is-invalid @enderror"
+                                    name="small_description" autocomplete="small_description" autofocus>{{ old('small_description') }}</textarea>
+                                @error('small_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Ana Açıklama</label>
+                                <textarea type="text" class="form-control p-input @error('description') is-invalid @enderror" name="description"
+                                    autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="file">Dosya Seç</label>
-                        <input type="file" name="photos[]" class="file-upload-default" multiple>
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                            <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Galeri Modu</button>
-                            </span>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="seo-tag">
+                            <div class="form-group mb-3">
+                                <label for="meta_title">Meta Başlık</label>
+                                <input type="text" value="{{ old('meta_title') }}"
+                                    class="form-control p-input @error('meta_title') is-invalid @enderror"
+                                    name="meta_title" autocomplete="meta_title" autofocus>
+                                @error('meta_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $meta_title }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="meta_description">Meta Açıklaması</label>
+                                <textarea type="text" class="form-control p-input @error('meta_description') is-invalid @enderror"
+                                    name="meta_description" autocomplete="meta_description" autofocus>{{ old('meta_description') }}</textarea>
+                                @error('meta_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="meta_keyword">Meta Anahtarı</label>
+                                <textarea type="text" class="form-control p-input @error('meta_keyword') is-invalid @enderror" name="meta_keyword"
+                                    autocomplete="meta_keyword" autofocus>{{ old('meta_keyword') }}</textarea>
+                                @error('meta_keyword')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                </div>
-                    <button type="submit" class="btn btn-gradient-primary mr-2">kaydet</button>
-                    <button href="#" class="btn btn-light">Vazgeç</button>
-                </form> --}}
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Home</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="seo-tag" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">SEO
-                            Tags</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="detaylar" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                            type="button" role="tab" aria-controls="pills-contact"
-                            aria-selected="false">Detaylar</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <div class="form-group mb-3">
-                            <label for="categories_id">Ürün kategorisi</label>
-                            <select name="category_id" class="form-select">
-                                <option value="" disabled selected>Ürün kategori seçiniz...</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="detaylar">
+                            <div class="form-group">
+                                <label for="original_price">Normal Fiyat</label>
+                                <input type="number" value="{{ old('original_price') }}"
+                                    class="form-control p-input @error('original_price') is-invalid @enderror"
+                                    name="original_price" autocomplete="original_price" autofocus>
+                                @error('original_price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $original_price }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="selling_price">İndirimli Fiyat</label>
+                                <input type="number" value="{{ old('selling_price') }}"
+                                    class="form-control p-input @error('selling_price') is-invalid @enderror"
+                                    name="selling_price" autocomplete="selling_price" autofocus>
+                                @error('selling_price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $selling_price }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" value="{{ old('quantity') }}"
+                                    class="form-control p-input @error('quantity') is-invalid @enderror" name="quantity"
+                                    autocomplete="quantity" autofocus>
+                                @error('quantity')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $quantity }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="float-start">
+                                <input type="checkbox" name="status" class="btn-check" id="status"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-primary" for="status">Status</label><br>
+                            </div>
+                            <div class="float-end">
+                                <input type="checkbox" name="trending" class="btn-check" id="trending"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-primary" for="trending">Trending</label><br>
+                            </div>
+
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Ürün adı</label>
-                            <input type="text" class="form-control" name="name">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="price">Ürün fiyatı</label>
-                            <input type="text" class="form-control" name="price">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="brand">Ürün kategorisi</label>
-                            <select name="brand" class="form-select">
-                                <option value="" disabled selected>Ürün kategori seçiniz...</option>
-                                @foreach ($brands as $brand)
-                                    <option value="{{ $brand->name }}">
-                                        {{ $brand->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="small_description">small_description</label>
-                            <textarea type="text" class="form-control p-input @error('small_description') is-invalid @enderror"
-                                name="small_description" autocomplete="small_description" autofocus></textarea>
-                            @error('small_description')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="description">description</label>
-                            <textarea type="text" class="form-control p-input @error('description') is-invalid @enderror" name="description"
-                                autocomplete="description" autofocus></textarea>
-                            @error('description')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="seo-tag">
-                        <div class="form-group mb-3">
-                            <label for="meta_title">Meta Başlık</label>
-                            <input type="text" class="form-control" name="meta_title">
-                        </div>
-                        <div class="form-group">
-                            <label for="meta_description">Meta Açıklaması</label>
-                            <textarea type="text" class="form-control p-input @error('meta_description') is-invalid @enderror"
-                                name="meta_description" autocomplete="meta_description" autofocus></textarea>
-                            @error('meta_description')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="meta_keyword">Meta Anahtarı</label>
-                            <textarea type="text" class="form-control p-input @error('meta_keyword') is-invalid @enderror"
-                                name="meta_keyword" autocomplete="meta_keyword" autofocus></textarea>
-                            @error('meta_keyword')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Ürün adı</label>
-                            <input type="text" class="form-control" name="name">
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="detaylar">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="switch">Status</label>
-                                    <input type="checkbox" name="status" style="width: 50px; height: 50px">
+                        <div class="tab-pane fade" id="pills-image" role="tabpanel" aria-labelledby="image">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="cover">Ürün fotoğrafı</label>
+                                        <input multiple="" type="file" accept=".jpg,.gif,.png,.bmp,.jpeg"
+                                            class="form-control" name="image[]" id="cover" multiple>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                    <div class="shadow  p-3 mb-5 bg-primary !spacing ">
+                        <button type="submit" class="btn btn-light">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

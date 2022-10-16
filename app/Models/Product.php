@@ -17,6 +17,7 @@ class Product extends Model
         "brand",
         "small_description",
         "description",
+        "image",
 
         "original_price",
         "selling_price",
@@ -29,7 +30,7 @@ class Product extends Model
         "meta_keyword"
     ];
 
-    public function images()
+    public function productImages()
     {
         return $this->hasMany(ProductImage::class, "product_id", "id");
     }

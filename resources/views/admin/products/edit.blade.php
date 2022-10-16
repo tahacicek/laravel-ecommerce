@@ -42,7 +42,7 @@
                         </ul>
                     </div>
                 @endif
-                <form class="forms-sample" method="POST" action="{{ route('admin.product.store') }}"
+                <form class="forms-sample" method="POST" action="{{ route('admin.product.update', $product->id) }}"
                     enctype="multipart/form-data">
                     @csrf
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -75,7 +75,8 @@
                                 <select name="category_id" class="form-select">
                                     <option value="" disabled selected>Ürün kategori seçiniz...</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">
+                                        <option value="{{ $category->id }}"
+                                            {{ $category->id == $product->category_id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
@@ -83,7 +84,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="name">Ürün adı</label>
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
+                                <input type="text" class="form-control" name="name" value="{{ $product->name }}"
                                     autocomplete="name" autofocus>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +94,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="slug">Slug</label>
-                                <input type="text" class="form-control" name="slug" value="{{ old('slug') }}"
+                                <input type="text" class="form-control" name="slug" value="{{ $product->slug }}"
                                     autocomplete="slug" autofocus>
                                 @error('slug')
                                     <span class="invalid-feedback" role="alert">
@@ -105,8 +106,8 @@
                                 <label for="brand">Ürün kategorisi</label>
                                 <select name="brand" class="form-select">
                                     @foreach ($brands as $brand)
-                                        <option value="{{ $brand->name }}">
-                                            {{ $brand->name }}
+                                        <option value="{{ $brand->name }}" {{ $brand->name == $product->brand ? "selected" : ""}} >
+                                           {{ $brand->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -114,7 +115,7 @@
                             <div class="form-group">
                                 <label for="small_description">Açıklama</label>
                                 <textarea type="text" class="form-control p-input @error('small_description') is-invalid @enderror"
-                                    name="small_description" autocomplete="small_description" autofocus>{{ old('small_description') }}</textarea>
+                                    name="small_description" autocomplete="small_description" autofocus>{{ $product->small_description }}</textarea>
                                 @error('small_description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -124,7 +125,7 @@
                             <div class="form-group">
                                 <label for="description">Ana Açıklama</label>
                                 <textarea type="text" class="form-control p-input @error('description') is-invalid @enderror" name="description"
-                                    autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                                    autocomplete="description" autofocus>{{ $product->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -135,7 +136,7 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="seo-tag">
                             <div class="form-group mb-3">
                                 <label for="meta_title">Meta Başlık</label>
-                                <input type="text" value="{{ old('meta_title') }}"
+                                <input type="text" value="{{ $product->meta_title }}"
                                     class="form-control p-input @error('meta_title') is-invalid @enderror"
                                     name="meta_title" autocomplete="meta_title" autofocus>
                                 @error('meta_title')
@@ -147,7 +148,7 @@
                             <div class="form-group">
                                 <label for="meta_description">Meta Açıklaması</label>
                                 <textarea type="text" class="form-control p-input @error('meta_description') is-invalid @enderror"
-                                    name="meta_description" autocomplete="meta_description" autofocus>{{ old('meta_description') }}</textarea>
+                                    name="meta_description" autocomplete="meta_description" autofocus>{{ $product->meta_description }}</textarea>
                                 @error('meta_description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -157,7 +158,7 @@
                             <div class="form-group">
                                 <label for="meta_keyword">Meta Anahtarı</label>
                                 <textarea type="text" class="form-control p-input @error('meta_keyword') is-invalid @enderror" name="meta_keyword"
-                                    autocomplete="meta_keyword" autofocus>{{ old('meta_keyword') }}</textarea>
+                                    autocomplete="meta_keyword" autofocus>{{ $product->meta_keyword }}</textarea>
                                 @error('meta_keyword')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -168,7 +169,7 @@
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="detaylar">
                             <div class="form-group">
                                 <label for="original_price">Normal Fiyat</label>
-                                <input type="number" value="{{ old('original_price') }}"
+                                <input type="number" value="{{ $product->original_price }}"
                                     class="form-control p-input @error('original_price') is-invalid @enderror"
                                     name="original_price" autocomplete="original_price" autofocus>
                                 @error('original_price')
@@ -179,7 +180,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="selling_price">İndirimli Fiyat</label>
-                                <input type="number" value="{{ old('selling_price') }}"
+                                <input type="number" value="{{ $product->selling_price }}"
                                     class="form-control p-input @error('selling_price') is-invalid @enderror"
                                     name="selling_price" autocomplete="selling_price" autofocus>
                                 @error('selling_price')
@@ -190,7 +191,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="quantity">Quantity</label>
-                                <input type="number" value="{{ old('quantity') }}"
+                                <input type="number" value="{{ $product->quantity }}"
                                     class="form-control p-input @error('quantity') is-invalid @enderror" name="quantity"
                                     autocomplete="quantity" autofocus>
                                 @error('quantity')
@@ -199,16 +200,22 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="float-start">
-                                <input type="checkbox" name="status" class="btn-check" id="status"
+                           <div class="row">
+                            <div class="col-md-1 float-start">
+                                <input type="checkbox" name="status" {{ $product->status == 1 ? "checked":"" }} class="btn-check" id="status"
                                     autocomplete="off">
                                 <label class="btn btn-outline-primary" for="status">Status</label><br>
                             </div>
-                            <div class="float-end">
-                                <input type="checkbox" name="trending" class="btn-check" id="trending"
+
+                            <div class="col-md-1">
+                                <input type="checkbox" name="trending" {{ $product->trending == 1 ? "checked":"" }} class="btn-check" id="trending"
                                     autocomplete="off">
                                 <label class="btn btn-outline-primary" for="trending">Trending</label><br>
                             </div>
+                            <small id="passwordHelpBlock" class="mb-5 form-text text-muted">
+                                Ürünün yayınlanmasını ve trend olmasını istiyorsanız kutucukları boş bırakınız.
+                              </small>
+                           </div>
 
                         </div>
                         <div class="tab-pane fade" id="pills-image" role="tabpanel" aria-labelledby="image">
@@ -229,7 +236,7 @@
                         </div>
                     </div>
                     <div class="shadow  p-3 mb-5 bg-primary !spacing ">
-                        <button type="submit" class="btn btn-light">Submit</button>
+                        <button type="submit" class="btn btn-light">Güncelle</button>
                     </div>
                 </form>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -12,7 +13,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('admin.products.index');
+        $products = Product::all();
+        return view('admin.products.index', compact('products'));
     }
 
     public function create()
@@ -61,9 +63,9 @@ class ProductController extends Controller
         toastr()->success('Product created successfully');
     }
 
-    public function edit($id)
+    public function edit(int $product_id)
     {
-        $product = \App\Models\Product::find($id);
+        $product = \App\Models\Product::find($product_id);
         $categories = \App\Models\Category::all();
         $brands = \App\Models\Brand::all();
         return view('admin.products.edit', compact('product', 'categories', 'brands'));

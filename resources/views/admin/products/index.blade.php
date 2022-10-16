@@ -11,7 +11,7 @@
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a class="text-dark"
-                                href="{{ route('admin.product.index') }}">Kategoriler</a>&nbsp;/&nbsp;Oluştur</p>
+                                href="">Kategoriler</a></p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
@@ -24,8 +24,7 @@
                     <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
                         <i class="mdi mdi-plus text-muted"></i>
                     </button>
-                    <a class="btn btn-primary mt-2 mt-xl-0" href="{{ route('admin.product.index') }}">Kategorileri
-                        Görüntüle</a>
+                    <a class="btn btn-primary mt-2 mt-xl-0" href="{{ route('admin.product.create') }}">Kategori Ekle</a>
                 </div>
             </div>
         </div>
@@ -33,58 +32,48 @@
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
-                <form class="forms-sample" method="POST" action="{{ route('admin.product.store') }}"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Ürün adı</label>
-                        <input type="text" class="form-control" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Ürün fiyatı</label>
-                        <input type="text" class="form-control" name="price">
-                    </div>
-                    <div class="form-group">
-                        <label for="details">Ürün detayı</label>
-                        <textarea rows="5" class="form-control" name="details"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="cover">Ürün fotoğrafı</label>
-                        <input multiple="" type="file" accept=".jpg,.gif,.png,.bmp,.jpeg"
-                            class="form-control inputfile d-none" name="cover" id="cover">
-                        <label for="cover" id="cover-label">
-                            Şimdilik fotoğraf seçin!
-                        </label>
-                        <style>
-                            .forms-sample .inputfile:focus~label {
-                                outline: 1px dotted #000;
-                                outline: -webkit-focus-ring-color auto 5px;
-                            }
-                        </style>
-                    </div>
-                    <div class="form-group">
-                        <label for="categories">Ürün kategorisi</label>
-                        <select name="category_id" class="form-control">
-                            <option value=""></option>
-                            <option value="1">Beyaz Eşya</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="stock">Stok</label>
-                        <input type="text" class="form-control" name="stock">
-                    </div>
-                    <div class="form-group">
-                        <label for="stock_open">Stok Adeti</label>
-                        <input type="text" class="form-control" name="stock_open">
-                    </div>
-                    <div class="form-group">
-                        <label for="preorder">Ön sipariş</label>
-                        <input type="text" class="form-control" name="preorder">
-                    </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="text-center">
+                            <th> ID </th>
+                            <th> Kategori Adı </th>
+                            <th> Ürün Adı </th>
+                            <th> Fiyat </th>
+                            <th> Stok </th>
+                            <th> Statu </th>
+                            <th> İşlemler </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($products as $product)
+                            <tr class="text-center">
+                                <td>{{ $product->id }}</td>
+                                <td>
+                                    @if ($product->category_id)
+                                        {{ $product->category->name }}
+                                    @else
+                                        Kategori Yok
+                                    @endif
+                                </td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->selling_price }}</td>
+                                <td>{{ $product->quantity }}</td>
+                                <td>{{ $product->status == 1 ? 'Pasif' : 'Yayında' }}</td>
+                                <td>
+                                    <a href="{{ route('admin.product.edit', $product->id) }}"
+                                        class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                    <a href="{{ route('admin.product.delete', $product->id) }}"
+                                        class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="text-center">
+                                <td colspan="7" class="text-center">Kayıt Bulunamadı</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
-            <button type="submit" class="btn btn-primary">Oluştur</button>
-            </form>
         </div>
-    </div>
     </div>
 @endsection

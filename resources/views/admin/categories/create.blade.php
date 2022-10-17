@@ -146,23 +146,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
-    <script>
-        function init() {
-            // On click of maximize, switch data attribute of window-content and covert whole row into column.
-            $("[data-widget='maximize']").click(function() {
-                var $overlay = $('.custom-overlay');
-                var $content = $('.row-content');
-                if ($overlay.is(':visible')) {
-                    $content.toggleClass('row-content column-content');
-                    $('.main-panel').toggleClass('main-panel-full custom-overlay');
-                } else {
-                    $('.main-panel').toggleClass('main-panel-full custom-overlay');
-                    $content.toggleClass('row-content column-content');
-                }
-            });
-
-            feather.replace();
-        }
-        window.onload = init;
-    </script>
 @endsection

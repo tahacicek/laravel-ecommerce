@@ -9,7 +9,7 @@
                         <p class="mb-md-0">Bu sayfada ürün oluşturuluyor.</p>
                     </div>
                     <div class="d-flex">
-                        <a href="{{ route("admin.") }}"><i class="mdi mdi-home text-muted hover-cursor"></i></a>
+                        <a href="{{ route('admin.') }}"><i class="mdi mdi-home text-muted hover-cursor"></i></a>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a class="btn btn-sm btn-secondary"
                                 href="{{ route('admin.product.index') }}">Ürünler</a>&nbsp;/&nbsp;<button
                                 class="btn btn-sm btn-secondary">
@@ -235,13 +235,22 @@
                                             </span>
                                         @enderror
                                         <div class="mt-4 text-center">
-                                            @if($product->productImages)
-                                                @foreach($product->productImages as $image)
-                                                    <img src="{{ asset($image->image) }}" class="me-4" width="100px"
-                                                        height="100px" alt=""/>
-                                                @endforeach
-                                            @else
+                                            @if ($product->productImages)
+                                                <div class="row">
+                                                    @foreach ($product->productImages as $image)
+                                                        <div class="col-md-2">
+                                                            <img src="{{ asset($image->image) }}"
+                                                                class="me-6 border text-center"
+                                                                style="width: 100px; height: 100px" alt="" />
 
+                                                            <a href="{{ route('admin.product.images.delete', $image->id) }}"
+                                                                style="width: 100px;"
+                                                                class="mt-2 btn-icon-text btn btn-sm btn-block btn-danger"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></a>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @else
                                                 <h5>Kaydedilen Resim Yok</h5>
                                             @endif
                                         </div>

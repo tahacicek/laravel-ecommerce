@@ -43,5 +43,6 @@ Route::group(["middleware" => ["auth", "isAdmin"],  "prefix" => "admin", "as" =>
         Route::get('/edit/{id}', 'ProductController@edit')->name('edit');
         Route::post('/update/{id}', 'ProductController@update')->name('update');
         Route::get('/delete/{id}', 'ProductController@delete')->name('delete');
+        Route::get("/product-images/{id}", "ProductController@imageDelete")->name("images.delete");
     });
 });

@@ -1,73 +1,150 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
-                <i class="mdi mdi-cards menu-icon"></i>
-                <span class="menu-title">Kategori</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.category.index') }}">Kategorileri
-                            Görüntüle</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.category.create') }}">Kategori
-                            Ekle</a></li>
-                </ul>
-            </div>
-        </li>
+<section style="width: 200px">
+    <ul class="sidebar-menu">
+      <li class="header">MAIN NAVIGATION</li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu " style="">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+        <span>Layout Options</span>
+          <span class="label label-primary pull-right">4</span>
+        </a>
+        <ul class="treeview-menu" style="display: none;">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Boxed</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Fixed</a></li>
+          <li class=""><a href="#"><i class="fa fa-circle"></i> Collapsed Sidebar</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ route('admin.brands.index') }}">
+          <i class="mdi mdi mdi-polymer menu-icon"></i> <span>Markalar</span>
+          <small class="label pull-right label-info">new</small>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="mdi mdi-cards menu-icon"></i>
+        <span>Kategori</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu @if (request()->is('admin/category*')) menu-open @endif" @if (request()->is('admin/category*')) style="display: block;" @endif>
 
+          <li class="@if(request()->is('admin/category')) active @endif"><a href="{{ route('admin.category.index') }}"><i class="fa fa-circle"></i> Kategori Görüntüle</a></li>
+          <li class="@if(request()->is('admin/category/create')) active @endif"><a href="{{ route('admin.category.create') }}"><i class="fa fa-circle"></i> Kategori Ekle</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="mdi mdi-tag-heart menu-icon"></i>
+        <span>Ürün</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu @if (request()->is('admin/product*')) menu-open @endif" @if (request()->is('admin/product*')) style="display: block;" @endif>
+          <li class="@if(request()->is('admin/product')) active @endif"><a href="{{ route('admin.product.index') }}"><i class="fa fa-circle"></i>Ürünleri
+            Görüntüle</a></li>
+          <li class="@if(request()->is('admin/product/create')) active @endif"><a href="{{ route('admin.product.create') }}"><i class="fa fa-circle"></i>Ürün Ekle</a></li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.brands.index') }}">
-                <i class="mdi mdi mdi-polymer menu-icon"></i>
-                <span class="menu-title">Markalar</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="mdi mdi-tag-heart menu-icon"></i>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.product.index') }}">Ürünleri
-                            Görüntüle </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.product.create') }}">Ürün
-                            Ekle</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="mdi mdi-tag-heart menu-icon"></i>
+        <span>Renk</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('admin.color.index') }}"><i class="fa fa-circle"></i>Renkleri
+            Görüntüle</a></li>
+          <li><a href="{{ route('admin.color.create') }}"><i class="fa fa-circle"></i>Renk Ekle</a></li>
+
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-edit"></i> <span>Forms</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> General Elements</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Editors</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-table"></i> <span>Tables</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Data tables</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-calendar"></i> <span>Calendar</span>
+          <small class="label pull-right label-danger">3</small>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-envelope"></i> <span>Mailbox</span>
+          <small class="label pull-right label-warning">12</small>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-folder"></i> <span>Examples</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Invoice</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Profile</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Login</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Register</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-share"></i> <span>Multilevel</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+          <li>
+            <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+              <li>
+                <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
                 </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-                <i class="mdi mdi-chart-pie menu-icon"></i>
-                <span class="menu-title">Charts</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-                <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Tables</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
-                <i class="mdi mdi-emoticon menu-icon"></i>
-                <span class="menu-title">Icons</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="documentation/documentation.html">
-                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                <span class="menu-title">Documentation</span>
-            </a>
-        </li>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+        </ul>
+      </li>
+      <li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+      <li class="header">LABELS</li>
+      <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+      <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+      <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
     </ul>
-</nav>
+  </section>

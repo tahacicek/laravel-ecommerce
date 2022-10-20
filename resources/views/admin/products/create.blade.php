@@ -201,18 +201,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-1 float-start">
-                                    <div class="float-start">
-                                        <input type="checkbox" name="status" class="btn-check" id="status"
-                                            autocomplete="off">
-                                        <label class="btn btn-outline-primary" for="status">Status</label><br>
-                                    </div>
+                                    <input type="checkbox" name="status" class="btn-check" id="status"
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="status">Status</label><br>
                                 </div>
                                 <div class="col-md-1">
-                                    <div class="float-end">
-                                        <input type="checkbox" name="trending" class="btn-check" id="trending"
-                                            autocomplete="off">
-                                        <label class="btn btn-outline-primary" for="trending">Trending</label><br>
-                                    </div>
+                                    <input type="checkbox" name="trending" class="btn-check" id="trending"
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="trending">Trending</label><br>
                                 </div>
                                 <small id="passwordHelpBlock" class="mb-5 form-text text-muted">
                                     Ürünün yayınlanmasını ve trend olmasını istiyorsanız kutucukları boş bırakınız.

@@ -62,7 +62,7 @@
                                 <td>
                                     <a href="{{ route('admin.product.edit', $product->id) }}"
                                         class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                    <a onclick="return delete()" href="{{ route('admin.product.delete', $product->id) }}"
+                                    <a  href="{{ route('admin.product.delete', $product->id) }}"
                                         class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
@@ -78,12 +78,7 @@
     </div>
 @endsection
 @push('scripts')
-<script type="text/javascript">
-
-    function delete() {
-        return confirm('Silmek istediğinize emin misiniz?')
-    }
-
+    <script>
+      $('#something').click( function() { alert('clicked'); });
     </script>
 @endpush
-

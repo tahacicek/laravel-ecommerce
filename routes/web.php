@@ -45,4 +45,12 @@ Route::group(["middleware" => ["auth", "isAdmin"],  "prefix" => "admin", "as" =>
         Route::get('/delete/{id}', 'ProductController@delete')->name('delete');
         Route::get("/product-images/{id}", "ProductController@imageDelete")->name("images.delete");
     });
+    Route::group(["prefix" => "color", "as" => "color.", "namespace" => "App\Http\Controllers\Admin"], function () {
+        Route::get('/', 'ColorController@index')->name('index');
+        Route::get('/create', 'ColorController@create')->name('create');
+        Route::post('/store', 'ColorController@store')->name('store');
+        Route::get('/edit/{id}', 'ColorController@edit')->name('edit');
+        Route::post('/update/{id}', 'ColorController@update')->name('update');
+        Route::get('/delete/{id}', 'ColorController@delete')->name('delete');
+    });
 });

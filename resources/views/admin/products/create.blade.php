@@ -61,10 +61,16 @@
                                 type="button" role="tab" aria-controls="pills-contact"
                                 aria-selected="false">Detaylar</button>
                         </li>
+
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="image" data-bs-toggle="pill" data-bs-target="#pills-image"
                                 type="button" role="tab" aria-controls="pills-image" aria-selected="false">Ürün
                                 Görseli</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="renkler" data-bs-toggle="pill" data-bs-target="#pills-renkler"
+                                type="button" role="tab" aria-controls="pills-renkler"
+                                aria-selected="false">Renkler</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
@@ -140,7 +146,7 @@
                                     name="meta_title" autocomplete="meta_title" autofocus>
                                 @error('meta_title')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $meta_title }}</strong>
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -173,7 +179,7 @@
                                     name="original_price" autocomplete="original_price" autofocus>
                                 @error('original_price')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $original_price }}</strong>
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -184,7 +190,7 @@
                                     name="selling_price" autocomplete="selling_price" autofocus>
                                 @error('selling_price')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $selling_price }}</strong>
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -195,7 +201,7 @@
                                     autocomplete="quantity" autofocus>
                                 @error('quantity')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $quantity }}</strong>
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -225,17 +231,38 @@
                                             id="cover" multiple>
                                         @error('image')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $image }}</strong>
+                                                <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="shadow  p-3 mb-5 bg-primary !spacing ">
-                        <button type="submit" class="btn btn-light">Submit</button>
-                    </div>
+                        <div class="tab-pane fade" id="pills-renkler" role="tabpanel" aria-labelledby="renkler">
+                            <div class="row ">
+                                @forelse ($colors as $color)
+                                    <div class="col-md-3 d-flex justify-content-center mt-2 mb-3">
+                                    <div class="p-2 border-5 border">
+                                        <div class="form-group">
+                                            <input  type="checkbox" value="{{ $color->id }}" name="colors[{{ $color->id }}]" class="btn-check" id="{{ $color->id }}">
+                                            <label style="width: 200px" class="btn btn-outline-primary"
+                                            autocomplete="off" for="{{ $color->id }}">{{ $color->name }}</label><br>
+                                              <input class="mt-5 " type="number" name="color_quantity[{{ $color->id }}]" style="width: 200px; border:1px solid">
+                                              <label style="width: 200px" class="text-center"
+                                                for="colors">Stok</label><br>
+                                        </div>
+                                    </div>
+                                  </div>
+                                @empty
+                                    <div class="col-md-12">
+                                        <p>Renk bulunamadı</p>
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
+                        <div class="shadow  p-3 mb-5 bg-primary !spacing ">
+                            <button type="submit" class="btn btn-light">Submit</button>
+                        </div>
                 </form>
             </div>
         </div>

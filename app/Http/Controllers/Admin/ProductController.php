@@ -24,7 +24,8 @@ class ProductController extends Controller
     {
         $categories = \App\Models\Category::all();
         $brands = \App\Models\Brand::all();
-        return view('admin.products.create', compact('categories', 'brands'));
+        $colors = \App\Models\Color::where('status', 0)->get();
+        return view('admin.products.create', compact('categories', 'brands', 'colors'));
     }
 
     public function store(ProductFormRequest $request)
@@ -59,6 +60,16 @@ class ProductController extends Controller
                 $product->productImages()->create([
                     'product_id' => $product->id,
                     'image' => $finalImagePathName,
+                ]);
+            }
+        }
+
+        if($request->colors){
+            foreach($request->colors as $key => $color){
+                $product->productColors()->create([
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'quantity' => $request->color_quantity[$key] ?? 0,
                 ]);
             }
         }

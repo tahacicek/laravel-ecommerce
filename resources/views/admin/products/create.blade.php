@@ -243,11 +243,11 @@
                                 @forelse ($colors as $color)
                                     <div class="col-md-3 d-flex justify-content-center mt-2 mb-3">
                                     <div class="p-2 border-5 border">
-                                        <div class="form-group">
+                                        <div class="form-group text-center">
                                             <input  type="checkbox" value="{{ $color->id }}" name="colors[{{ $color->id }}]" class="btn-check" id="{{ $color->id }}">
-                                            <label style="width: 200px" class="btn btn-outline-primary"
+                                            <label style="width: 150px" class="btn btn-outline-primary"
                                             autocomplete="off" for="{{ $color->id }}">{{ $color->name }}</label><br>
-                                              <input class="mt-5 " type="number" name="color_quantity[{{ $color->id }}]" style="width: 200px; border:1px solid">
+                                              <input class="mt-5 " type="number" name="color_quantity[{{ $color->id }}]" style="width: 150px; border:1px solid">
                                               <label style="width: 200px" class="text-center"
                                                 for="colors">Stok</label><br>
                                         </div>

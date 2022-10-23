@@ -10,8 +10,8 @@
                     </div>
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
-                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a class="text-dark"
-                                href="">Slider</a></p>
+                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a class="text-dark" href="">Slider</a>
+                        </p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
@@ -32,10 +32,10 @@
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
-                <table class="table table-bordered table-striped">
+                <table id="dataproduct" class="table table-bordered table-striped">
                     <thead>
                         <tr class="text-center">
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Image</th>
                             <th>Title</th>
                             <th>Description</th>
@@ -47,20 +47,17 @@
                         @foreach ($sliders as $slider)
                             <tr class="text-center">
                                 <td>{{ $slider->id }}</td>
-                                <td>
-                                    <img src="{{ asset($slider->image) }}" alt="" width="100">
-                                </td>
+                                <td><img src="{{ asset($slider->image) }}" alt="" width="100"></td>
                                 <td>{{ $slider->title }}</td>
                                 <td>{{ $slider->description }}</td>
-                                <td>
-                                    <label class="badge rounded-pill bg-{{ $slider->status == 1 ? 'danger' : 'success' }}">
-                                        {{ $slider->status == 1 ? 'Pasif' : 'Aktif' }}
-                                    </label>
-                                <td>
+                                <td><label class="badge rounded-pill bg-{{ $slider->status == 1 ? 'danger' : 'success' }}">
+                                        {{ $slider->status == 1 ? 'Pasif' : 'Aktif' }}</label>
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.slider.edit', $slider->id) }}"
                                         class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                     <a href="{{ route('admin.slider.delete', $slider->id) }}"
+                                        onclick="return confirm('Silmek istediğinize emin misiniz?')"
                                         class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
@@ -71,3 +68,18 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataproduct').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Turkish.json"
+                },
+            });
+        });
+    </script>
+@endpush
+@push('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+@endpush

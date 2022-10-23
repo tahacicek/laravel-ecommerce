@@ -26,7 +26,7 @@ class SliderFormRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'description' => 'required|max:800',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             "status" => "nullable"
         ];
     }

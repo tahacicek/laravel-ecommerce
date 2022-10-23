@@ -2,21 +2,21 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Customer\CustomerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
-
+Route::get('/', [App\Http\Controllers\Customer\CustomerController::class, 'index'])->name('index');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(["middleware" => ["auth", "isAdmin"],  "prefix" => "admin", "as" => "admin."], function () {
 
     Route::get('dashboard', [DashboardController::class, 'index']);
-    //Category Routes
 
     Route::group(["prefix" => "category", "as" => "category.", "namespace" => "App\Http\Controllers\Admin"], function () {
         Route::get('/', 'CategoryController@index')->name('index');

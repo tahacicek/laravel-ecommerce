@@ -49,7 +49,7 @@
                                 <td>{{ $slider->id }}</td>
                                 <td><img src="{{ asset($slider->image) }}" alt="" width="100"></td>
                                 <td>{{ $slider->title }}</td>
-                                <td>{{ $slider->description }}</td>
+                                <td>{{ Str::limit($slider->description, 40) }}</td>
                                 <td><label class="badge rounded-pill bg-{{ $slider->status == 1 ? 'danger' : 'success' }}">
                                         {{ $slider->status == 1 ? 'Pasif' : 'Aktif' }}</label>
                                 </td>

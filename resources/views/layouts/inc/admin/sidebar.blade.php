@@ -81,18 +81,17 @@
       </li>
       <li class="treeview">
         <a href="#">
-          <i class="fa fa-table"></i> <span>Tables</span>
+          <i class="fa fa-table"></i> <span>Ana Sayfa Slider</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a href="#"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-          <li><a href="#"><i class="fa fa-circle-o"></i> Data tables</a></li>
+          <li><a href="{{ route("admin.slider.index") }}"><i class="fa fa-circle-o"></i>Slider'lar</a></li>
+          <li><a href="{{ route("admin.slider.create") }}"><i class="fa fa-circle-o"></i>Slider Oluştur</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
-          <i class="fa fa-calendar"></i> <span>Calendar</span>
-          <small class="label pull-right label-danger">3</small>
+        <a href="">
+          <i class="fa fa-calendar"></i> <span>##2</span>
         </a>
       </li>
       <li>

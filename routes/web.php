@@ -58,4 +58,13 @@ Route::group(["middleware" => ["auth", "isAdmin"],  "prefix" => "admin", "as" =>
         Route::post('/update/{id}', 'ColorController@update')->name('update');
         Route::get('/delete/{id}', 'ColorController@delete')->name('delete');
     });
+
+    Route::group(["prefix" => "slider", "as" => "slider.", "namespace" => "App\Http\Controllers\Admin"], function () {
+        Route::get('/', 'SliderController@index')->name('index');
+        Route::get('/create', 'SliderController@create')->name('create');
+        Route::post('/store', 'SliderController@store')->name('store');
+        Route::get('/edit/{id}', 'SliderController@edit')->name('edit');
+        Route::post('/update/{id}', 'SliderController@update')->name('update');
+        Route::get('/delete/{id}', 'SliderController@delete')->name('delete');
+    });
 });

@@ -60,7 +60,7 @@ class ProductController extends Controller
                 $finalImagePathName = $uploadPath . "-" . $filename;
                 $product->productImages()->create([
                     'product_id' => $product->id,
-                    'image' => $finalImagePathName,
+                    'image' => "uploads/products/$finalImagePathName",
                 ]);
             }
         }
@@ -117,7 +117,7 @@ class ProductController extends Controller
                 $finalImagePathName = $uploadPath . "-" . $filename;
                 $product->productImages()->create([
                     'product_id' => $product->id,
-                    'image' => $finalImagePathName,
+                    'image' => "uploads/products/$finalImagePathName",
                 ]);
             }
         }

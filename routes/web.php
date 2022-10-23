@@ -44,6 +44,11 @@ Route::group(["middleware" => ["auth", "isAdmin"],  "prefix" => "admin", "as" =>
         Route::post('/update/{id}', 'ProductController@update')->name('update');
         Route::get('/delete/{id}', 'ProductController@delete')->name('delete');
         Route::get("/product-images/{id}", "ProductController@imageDelete")->name("images.delete");
+        Route::post("/product-images/{id}", "ProductController@imageStore")->name("images.store");
+        Route::post("/product-color/{prod_color_id}", "ProductController@updateProdColorQty");
+        Route::get("/product-color/{prod_color_id}/delete", "ProductController@deleteProdColorQty");
+
+
     });
     Route::group(["prefix" => "color", "as" => "color.", "namespace" => "App\Http\Controllers\Admin"], function () {
         Route::get('/', 'ColorController@index')->name('index');

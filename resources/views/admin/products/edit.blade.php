@@ -11,7 +11,7 @@
                     <div class="d-flex">
                         <a href="{{ route('admin.') }}"><i class="mdi mdi-home text-muted hover-cursor"></i></a>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a class="btn btn-sm btn-secondary"
-                                href="{{ route('admin.product.index') }}">Ürünler</a>&nbsp;/&nbsp;<button
+                                href="{{ url('admin/product') }}">Ürünler</a>&nbsp;/&nbsp;<button
                                 class="btn btn-sm btn-secondary">
                                 Notifications
                             </button></p>
@@ -264,25 +264,79 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-renkler" role="tabpanel" aria-labelledby="renkler">
+                            <h4>Ürün Rengi Ekle</h4>
                             <div class="row ">
                                 @forelse ($colors as $color)
                                     <div class="col-md-3 d-flex justify-content-center mt-2 mb-3">
-                                    <div class="p-2 border-5 border">
-                                        <div class="form-group text-center">
-                                            <input  type="checkbox" value="{{ $color->id }}" name="colors[{{ $color->id }}]" class="btn-check" id="{{ $color->id }}">
-                                            <label style="width: 150px" class="btn btn-outline-primary"
-                                            autocomplete="off" for="{{ $color->id }}">{{ $color->name }}</label><br>
-                                              <input class="mt-5 " type="number" name="color_quantity[{{ $color->id }}]" style="width: 150px; border:1px solid">
-                                              <label style="width: 200px" class="text-center"
-                                                for="colors">Stok</label><br>
+                                        <div class="p-2 border-5 border">
+                                            <div class="form-group text-center">
+                                                <input type="checkbox"
+                                                    value="{{ $color->id }}" name="colors[{{ $color->id }}]"
+                                                    class="btn-check" id="{{ $color->id }}">
+                                                <label style="width: 150px" class="btn btn-outline-primary"
+                                                    autocomplete="off"
+                                                    for="{{ $color->id }}">{{ $color->name }}</label><br>
+                                                <input class="mt-5" value="color_quantity[{{ $color->id }}]"
+                                                    type="number"
+                                                    name="color_quantity[{{ $color->id }}]"
+                                                    style="width: 150px; border:1px solid">
+                                                <label style="width: 200px" class="text-center"
+                                                    for="colors">Stok</label><br>
+                                            </div>
                                         </div>
                                     </div>
-                                  </div>
                                 @empty
                                     <div class="col-md-12">
                                         <p>Renk bulunamadı</p>
                                     </div>
                                 @endforelse
+                            </div>
+                            <div class="mb-3">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dynamic_field">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>Renk</th>
+                                                <th>Stok</th>
+                                                <th>İşlem</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($product->productColors as $color)
+                                                <tr class="productColorTR text-center">
+                                                    <td>
+                                                        @if ($color->color)
+                                                            {{ $color->color->name }}
+                                                        @else
+                                                            <p>Renk bulunamadı</p>
+                                                        @endif
+                                                    </td>
+                                                    <td class="">
+                                                        <div class="input-group">
+                                                            <input
+                                                                class="updateProductColorQty form-control border-dark text-center"
+                                                                type="number" value="{{ $color->quantity }}"
+                                                                name="color_quantity[]" placeholder="Stok"
+                                                                class="form-control name_list form-conrol-sm" />
+                                                            <button type="button" value="{{ $color->id }}"
+                                                                class="updateProductColorBtn border-dark btn btn-success btn-sm text-white">Güncelle</button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" value="{{ $color->id }}"
+                                                            name="add" id="add"
+                                                            class="deleteProductColorBtn btn btn-danger btn-sm"><i
+                                                                class="fa fa-trash" aria-hidden="true"></i></button>
+                                                    </td>
+                                                @empty
+                                                    <td colspan="3">
+                                                        <p>Renk bulunamadı</p>
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -294,3 +348,72 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $(document).on("click", ".updateProductColorBtn", function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var product_id = "{{ $product->id }}";
+                var prod_color_id = $(this).val();
+                var qty = $(this).closest(".productColorTR").find(".updateProductColorQty").val();
+                if (qty <= 0) {
+                    alert("Stok alanı boş bırakılamaz");
+                    return false;
+                }
+                var data = {
+                    qty: qty,
+                    product_id: product_id,
+                    _token: "{{ csrf_token() }}"
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/product/product-color/" + prod_color_id,
+                    data: data,
+                    success: function(response) {
+                        alert(response.message);
+                    },
+                });
+            });
+            $(document).on("click", ".deleteProductColorBtn", function() {
+                var prod_color_id = $(this).val();
+                var thisClick = $(this);
+                $.ajax({
+                    type: "GET",
+                    url: "/admin/product/product-color/"+prod_color_id+"/delete",
+                    success: function(response) {
+                        thisClick.closest(".productColorTR").remove();
+                        alert(response.message);
+                    },
+                });
+            });
+        });
+    </script>
+
+    {{-- // $(document).ready(function() {
+        //     var i = 1;
+        //     $('#add').click(function() {
+        //         i++;
+        //         $('#dynamic_field').append('<tr id="row' + i + '" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="surname[]" placeholder="Enter your Surname" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        //     });
+        //     $(document).on('click', '.btn_remove', function() {
+        //         var button_id = $(this).attr("id");
+        //         $('#row' + button_id + '').remove();
+        //     });
+        //     $('#submit').click(function() {
+        //         $.ajax({
+        //             url: "name.php",
+        //             method: "POST",
+        //             data: $('#add_name').serialize(),
+        //             success: function(data) {
+        //                 alert(data);
+        //                 $('#add_name')[0].reset();
+        //             }
+        //         });
+        //     });
+        // }); --}}
+@endpush

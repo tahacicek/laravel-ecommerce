@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductColor;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -64,8 +65,8 @@ class ProductController extends Controller
             }
         }
 
-        if($request->colors){
-            foreach($request->colors as $key => $color){
+        if ($request->colors) {
+            foreach ($request->colors as $key => $color) {
                 $product->productColors()->create([
                     'product_id' => $product->id,
                     'color_id' => $color,
@@ -81,7 +82,9 @@ class ProductController extends Controller
         $product = \App\Models\Product::find($product_id);
         $categories = \App\Models\Category::all();
         $brands = \App\Models\Brand::all();
-        return view('admin.products.edit', compact('product', 'categories', 'brands'));
+        $product_colors = $product->productColors->pluck("color_id")->toArray();
+        $colors = \App\Models\Color::whereNotIn('id', $product_colors)->get();
+        return view('admin.products.edit', compact('product', 'categories', 'brands', 'colors'));
     }
 
     public function update(ProductFormRequest $request, int $product_id)
@@ -118,6 +121,15 @@ class ProductController extends Controller
                 ]);
             }
         }
+        if ($request->colors) {
+            foreach ($request->colors as $key => $color) {
+                $product->productColors()->create([
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'quantity' => $request->color_quantity[$key] ?? 0,
+                ]);
+            }
+        }
         return redirect()->route('admin.product.index')->with('success', 'Ürün Başarıyla Güncellendi.');
     }
 
@@ -147,4 +159,20 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Ürün Resimleri Başarıyla Silindi.');
     }
 
+    public function deleteProdColorQty(string $product_color_id)
+    {
+        $productColor = ProductColor::find($product_color_id);
+        $productColor->delete();
+        return response()->json(['message' => 'Renk silindi..',]);
+    }
+
+    public function updateProdColorQty(Request $request, $prod_color_id)
+    {
+        $productColor = Product::find($request->product_id)
+            ->productColors()->where("id", $prod_color_id)->first();
+        $productColor->update([
+            'quantity' => $request->qty,
+        ]);
+        return response()->json(['message' => 'Stok durumu güncellendi.',]);
+    }
 }

@@ -27,6 +27,7 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validated();
         $category = new Category;
+        $path = "uploads/category/";
         $category->name = $validatedData['name'];
         $category->slug = Str::slug($validatedData['slug']);
         $category->description = $validatedData['description'];
@@ -38,7 +39,7 @@ class CategoryController extends Controller
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move('uploads/category', $filename);
-            $category->image = $filename;
+            $category->image = $path.$filename;
 
         }
 

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card text-center" style="margin-left: 185px">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -52,8 +52,8 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-8 offset-md-4 text-center">
+                                <button type="submit" class="btn btn-primary text-dark">
                                     {{ __('Login') }}
                                 </button>
 

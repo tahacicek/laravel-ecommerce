@@ -114,10 +114,10 @@ class ProductController extends Controller
                 $extention = $imageFile->getClientOriginalName();
                 $filename = time() . $i++.'.'.$extention;
                 $imageFile->move($uploadPath, $filename);
-                $finalImagePathName = $uploadPath.".".$filename;
+                $finalImagePathName = $uploadPath.$filename;
                 $product->productImages()->create([
                     'product_id' => $product->id,
-                    'image' => "uploads/products/$finalImagePathName",
+                    'image' => $finalImagePathName,
                 ]);
             }
         }

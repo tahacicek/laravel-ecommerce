@@ -17,4 +17,16 @@ class CustomerController extends Controller
         $categories = \App\Models\Category::where('status', 0)->get();
         return view('customer.collections.category.index', compact('categories'));
     }
+
+    public function products($category_slug)
+    {
+        $category = \App\Models\Category::where('slug', $category_slug)->first();
+        if ($category) {
+            $products = $category->products()->where('status', 0)->get();
+            return view('customer.collections.product.index', compact('products', 'category'));
+        }else{
+            return redirect()->route("categories")->with('error', 'Kategori Bulunamadı');
+        }
+
+    }
 }

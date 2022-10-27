@@ -14,12 +14,12 @@
                     <div class="card">
                         <h4>4.5</h4>
                         <i class="fa fa-heart" aria-hidden="true"></i>
-                        <a class="text-dark" href="{{ url("/koleksiyon/" . $category->slug) }}">
+                        <a class="text-dark" target="_blank" href="{{ url("/kategori/" . $category->slug) }}">
                             <div class="card-img">
-                                <img src="{{ asset("uploads/category/" . $category->image) }}"
+                                <img src="{{ asset($category->image) }}"
                                     alt="">
                                 <img class="blur"
-                                    src="{{ asset("uploads/category/" . $category->image) }}"
+                                    src="{{ asset($category->image) }}"
                                     alt="">
                             </div>
                             <div class="card-text">

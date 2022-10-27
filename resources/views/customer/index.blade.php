@@ -1,39 +1,48 @@
 @extends('layouts.app')
 @section('title', 'Ana Sayfa')
 @section('content')
-        <div class="main">
-            <header>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li>
-                        <h1>Ecommerce</h1>
-                    </li>
-                    <li><a href="#">Collections</a></li>
-                    <li><a href="#">Brands</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </header>
-            <div class="cd-slider">
-                <ul>
-                    @foreach ($sliders as $key => $slider)
-                        <li>
-                            <div class="image" style="background-image:url({{ asset($slider->image) }});"></div>
-                            <div class="content">
-                                <h1>{{ $slider->description }}</h1>
-                                <a href="#">{!! $slider->title !!}</a>
-                                <div>
-                                    <a href="#" class="btn btn-slider">
-                                       <i class="fa fa-shopping-bag" aria-hidden="true"></i> Get Now
-                                    </a>
-                                </div>
-                            </div>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 
-                        </li>
-                    @endforeach
-                </ul>
+    <div class="carousel-inner">
+        @foreach ($sliders as $key => $slider)
+        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+            @if ($slider->image)
+            <img src="{{ asset($slider->image) }}" class="d-block w-100" alt="...">
+            @endif
+            {{-- <div class="carousel-caption d-none d-md-block">
+              <h5>{{ $slider->title }}</h5>
+              <p>{{ $slider->description }}</p>
+            </div> --}}
+            <div class="carousel-caption d-none d-md-block">
+                <div class="custom-carousel-content">
+                    <h1>
+                        {{ $slider->title }}
+                    </h1>
+                    <p>
+                        {{ $slider->description }}
+                    </p>
+                    <div>
+                        <a href="#" class="btn btn-slider">
+                            Get Now
+                        </a>
+                    </div>
+                </div>
             </div>
-            <!--/.cd-slider-->
-        </div>
+          </div>
+
+
+
+        @endforeach
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 @endsection

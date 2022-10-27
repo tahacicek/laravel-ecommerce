@@ -13,7 +13,8 @@
           "-webkit-tap-highlight-color",
           "text-align: -webkit-match-parent",
           "-webkit-overflow-scrolling",
-          "overflow-anchor"
+          "overflow-anchor",
+          "backdrop-filter"
         ]
       }
     ],

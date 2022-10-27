@@ -30,7 +30,7 @@ class CategoryFormRequest extends FormRequest
             'meta_title' => 'required|string',
             'meta_description' => 'required|string',
             'meta_keyword' => 'required|string',
-            'image' => 'nullable|mimes:jpeg,jpg,png|max:2048' // |mimetypes:image/png,image/jpeg|max:2048
+            'image' => 'nullable|mimes:jpeg,jpg,png,webp|max:2048' // |mimetypes:image/png,image/jpeg|max:2048
 
         ];
     }

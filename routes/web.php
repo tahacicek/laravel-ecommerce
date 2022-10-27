@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\Customer\CustomerController::class, 'index'])->name('index');
+Route::get('/koleksiyon', [App\Http\Controllers\Customer\CustomerController::class, 'categories'])->name('categories');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(["middleware" => ["auth", "isAdmin"],  "prefix" => "admin", "as" => "admin."], function () {

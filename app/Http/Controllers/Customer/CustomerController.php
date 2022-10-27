@@ -11,4 +11,10 @@ class CustomerController extends Controller
     {   $sliders = \App\Models\Slider::where('status', 0)->get();
         return view('customer.index', compact('sliders'));
     }
+
+    public function categories()
+    {
+        $categories = \App\Models\Category::where('status', 0)->get();
+        return view('customer.collections.category.index', compact('categories'));
+    }
 }

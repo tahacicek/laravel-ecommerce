@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="row">
-        <livewire:customer.product.index :category="$category" :products="$products" />
+        <livewire:customer.product.index :category="$category"/>
         </div>
     </div>
 </div>

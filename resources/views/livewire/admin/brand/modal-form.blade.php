@@ -10,6 +10,18 @@
             <form wire:submit.prevent="storeBrand">
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="category_id" require dclass="form-label">Kategori</label>
+                        <select wire:model.defer="category_id" class="form-select form-select-sm" name="" id="">
+                            <option selected>Lütfen kategori seçiniz..</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="name">Marka ismi</label>
                         <input type="text" wire:model.defer="name"
                             class="form-control p-input @error('name') is-invalid @enderror" nZame="name"
@@ -75,6 +87,20 @@
             <div wire:loading.remove>
                 <form wire:submit.prevent="updateBrand">
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label for="category_id" require dclass="form-label">Kategori</label>
+                            <select wire:model.defer="category_id" class="form-select form-select-sm" name="" id="">
+                                <option>Lütfen kategori seçiniz..</option>
+                                @foreach ($categories as $category)
+                                    <option @if ($category->id == $this->category_id) selected @endif value="{{ $category->id }}">
+                                        {{ $category->name }}</option>
+
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="name">Marka ismi</label>
                             <input type="text" wire:model.defer="name"

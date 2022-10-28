@@ -235,7 +235,7 @@ select.noStyle {
 
 
 
-.card {
+.cards {
     width: 300px;
     min-width: 300px;
     height: auto;
@@ -250,19 +250,19 @@ select.noStyle {
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .08);
 }
 
-.card:hover {
+.cards:hover {
     transform: translate(0, -10px);
     box-shadow: 0px 17px 35px 0px rgba(0, 0, 0, .07);
 }
 
-.card h4 {
+.cards h4 {
     position: absolute;
     left: 0;
     top: 0;
     padding: 15px;
 }
 
-.card i {
+.cards i {
     position: absolute;
     right: 0;
     top: 0;
@@ -271,7 +271,7 @@ select.noStyle {
     line-height: 3.2rem;
 }
 
-.card .card-text {
+.cards .card-text {
     padding: 20px;
 }
 
@@ -281,7 +281,7 @@ p {
     margin-top: 10px;
 }
 
-.card .card-img {
+.cards .card-img {
     transform: translate(90px, -10px);
     display: flex;
     align-items: center;
@@ -289,7 +289,7 @@ p {
     transition: all .35s ease-out;
 }
 
-.card img {
+.cards img {
     height: 180px;
     width: 180px;
     border-radius: 50%;
@@ -298,7 +298,7 @@ p {
 
 }
 
-.card img.blur {
+.cards img.blur {
     position: absulute;
     filter: blur(2px);
     z-index: -1;
@@ -307,11 +307,11 @@ p {
     transition: all .35s ease-out;
 }
 
-.card:hover .card-img {
+.cards:hover .card-img {
     transform: translate(70px, -15px);
 }
 
-.card:hover .card-img img.blur {
+.cards:hover .card-img img.blur {
     transform: translate(-100px, 35px) scale(.85);
     opacity: 0.70;
     filter: blur(1px);
@@ -341,7 +341,7 @@ p {
     position: relative;
 }
 
-.btn {
+.slider button {
     min-width: 60px;
     margin: auto 30px;
     height: 60px;
@@ -355,11 +355,11 @@ p {
     transition: all .25s ease;
 }
 
-.btn:hover {
+.slider button:hover{
     box-shadow: 0px 17px 35px 0px rgba(0, 0, 0, .07);
 }
 
-.btn i {
+.slider button i{
     font-size: 1.2rem;
 }
 

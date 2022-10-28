@@ -22,8 +22,7 @@ class CustomerController extends Controller
     {
         $category = \App\Models\Category::where('slug', $category_slug)->first();
         if ($category) {
-            $products = $category->products()->where('status', 0)->get();
-            return view('customer.collections.product.index', compact('products', 'category'));
+            return view('customer.collections.product.index', compact('category'));
         }else{
             return redirect()->route("categories")->with('error', 'Kategori Bulunamadı');
         }

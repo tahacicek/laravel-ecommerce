@@ -38,7 +38,8 @@
                             <thead>
                                 <tr class="text-center">
                                     <th> ID </th>
-                                    <th> Name</th>
+                                    <th> Name </th>
+                                    <th> Category </th>
                                     <th> Slug </th>
                                     <th> Status </th>
                                     <th> İşlemler </th>
@@ -49,6 +50,13 @@
                                     <tr class="text-center">
                                         <td> {{ $brand->id }} </td>
                                         <td> {{ $brand->name }}</td>
+                                        <td>
+                                            @if ($brand->category_id)
+                                                {{ $brand->category->name }}
+                                                @else
+                                                <span class="badge bg-danger">Kategori Yok</span>
+                                            @endif
+                                            </td>
                                         <td> {{ $brand->slug }} </td>
                                         <td> {{ $brand->status == 1 ? 'Pasif' : 'Yayında' }}</td>
                                         <td>

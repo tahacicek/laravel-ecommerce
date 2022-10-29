@@ -15,15 +15,20 @@
             </div> --}}
             <div class="carousel-caption d-none d-md-block">
                 <div class="custom-carousel-content">
-                    <h1>
-                        {{ $slider->title }}
-                    </h1>
-                    <p>
-                        {{ $slider->description }}
-                    </p>
+                    <div class="col-md-4">
+
+                            <h1>
+                                {{ $slider->title }}
+                            </h1>
+                            <p>
+                                <div class="col-md-12">
+                                    {{ $slider->description }}
+                                </div>
+                            </p>
+                    </div>
                     <div>
                         <a href="#" class="btn btn-slider">
-                            Get Now
+                       <i class="fa fa-shopping-bag" aria-hidden="true"></i>     Get Now
                         </a>
                     </div>
                 </div>

@@ -6,20 +6,28 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $product, $category, $brandInputs = [];
+    public $product, $category, $brandInputs = [], $priceInput;
     protected $listeners = ['addToCart' => 'addToCart'];
     protected $queryString = [
-        'brandInputs' => ['except' => '', 'as' =>'brand'],
+        'brandInputs' => ['except' => '', 'as' => 'brand'],
+        'priceInput' => ['except' => '', 'as' => 'price'],
     ];
     public function render()
     {
-        $this->products = \App\Models\Product::where('category_id', $this->category->id)->when($this->brandInputs, function($q){
+        $this->products = \App\Models\Product::where('category_id', $this->category->id)->when($this->brandInputs, function ($q) {
             $q->whereIn('brand', $this->brandInputs);
-        })->where('status', 0)->get();
+        })
+            ->when($this->priceInput, function ($q) {
+                $q->when($this->priceInput == 'en-yuksek-fiyat', function ($q2) {
+                    $q2->orderBy('selling_price', 'desc');
+                })->when($this->priceInput == 'en-dusuk-fiyat', function ($q2) {
+                    $q2->orderBy('selling_price', 'asc');
+                });
+            })->where('status', 0)->get();
 
         return view('livewire.customer.product.index', [
-           "products" => $this->products,
-           "category" => $this->category
+            "products" => $this->products,
+            "category" => $this->category
         ]);
     }
 
@@ -29,5 +37,4 @@ class Index extends Component
         // $this->emit('productIndex');
 
     }
-
 }

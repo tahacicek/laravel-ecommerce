@@ -31,7 +31,7 @@
                         class="fa fa-bars" aria-hidden="true"></i> KATEGORİLER </button>
                 <a class="navbar-brand float-left" href="#">
 
-                    <strong class="text-dark m-2">Floware E-Commerce</strong>
+                    <strong class="text-dark m-2 title-site">Floware E-Commerce</strong>
                     <img src="https://yandex-images.clstorage.net/i5sw0J184/3846d3Rw/pcHfJuew8VWIXJ1tYcWHE5yJm_UXNJ4veQ-ohI_DqyFevGYKTWq9R7P9rcvNn-uFVlBsq3WYdU2E6LWFdyW1EUDVunKTcUCxePyNbVEVFqMM-St157TfbwkqLfU6Rm9R653XGo1sKzCxivsJHv08crGUeevw2EGMNMgVQaKxw3eh0C2W1pEDUDpNXgjDx4agzlhsdWUXSLz__Arh-SReJwuvRk4JL4nQkxjLmqz8PZKjV_tLo7oBCMYJlXfzkoDHVLI9ZTYzYoMYXAyKgIUG8l-IfJVWNEuczo5qcPqGXARKbDRuSu9IIGGL2elMTM5CEkWa6hHZsMgnyfcEMlHTxEch7AfX0bABus_9WiKm5-E_uVxFZZbqPW1ti-P7FN3WSZ63j6ieWBIR6Moozy9MYkLUyxhh-RJatkq1RjEA8ZTnwk2W5SDyUMu8HAgQtvWAfFttdNYlOK6tnVhhi_X8x_pMxt46HPhTM7goSo_uzJCBl1upUCsTSvW6t4ZhAUO0pxOdpWfw4sI4Hc7YsKSF4U_aTGcnpLqdTe55g9n3HXYa7_c9eU75weCYqXh_XY4hAuVpq-OYsEilukcGENICJ2eCbXS3MLJRi74OK1J19IEcqlyVdZeIvN1fWZHLJO6EmswXLYrsuaCDW8porw0OsaO1SapRmNE7htpE9wLAYdYkcsyVVgGwI5oc7jmg1uZxnYt9pYT0u31frYmy-VaONUiudI-aLquxMMp4u539HGCzxRiJ8CqxO9QZZWQxgkJlZMJvhOTRosDIvi4ao8S0ky3bHEeXVFpe_6wIMdtGXtdbX2V_Ch6r8HLJiJiOjp0wcaW62VP4YamnWEb2clCi5fegzaYFgSLBi73O2_EmNzEOqN2ndxU6XMwtqqMLFI3Xe3wED2nsmuECysmLbSzuw4MnO-kBGHJp5Jo11MFCEPUXg62lh0GDUgge_OjS9LazTYm_lofUSu8834jRqyUuw"
                         width="30" height="30" alt="LOGO">
                 </a>

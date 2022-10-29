@@ -1,3 +1,5 @@
+@import "/public/assets/css/custom.scss";
+
 * {
     box-sizing: border-box;
 }
@@ -657,6 +659,8 @@ p {
 
   .number-input input[type=number]::-webkit-inner-spin-button,
   .number-input input[type=number]::-webkit-outer-spin-button {
+
+
     -webkit-appearance: none;
   }
 
@@ -665,13 +669,10 @@ p {
     justify-content: space-around;
     align-items: center;
   }
-
-  .number-input:hover {
-    height: 40px;
-  }
   .number-input button {
     -webkit-appearance: none;
-
+    -moz-appearance: none;
+    appearance: none;
     background-color: transparent;
     border: none;
     align-items: center;
@@ -739,5 +740,17 @@ p {
       }
     }
   }
+
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
 /* Product View */
+
 

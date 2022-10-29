@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label for="code">Renk Kodu</label>
-                            <input type="text" value="{{ old('code') }}"
+                            <input type="color" value="{{ old('code') }}"
                             class="form-control p-input @error('code') is-invalid @enderror"
                             name="code" autocomplete="code" autofocus>
                         @error('code')

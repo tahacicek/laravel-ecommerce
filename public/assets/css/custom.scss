@@ -1,0 +1,459 @@
+
+@mixin flex ($dir: row, $wrap: nowrap, $ai: center, $jc: center, $ac: center){
+  display: flex;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+  align-items: $ai;
+  justify-content: $jc;
+  align-content: $ac;
+}
+@mixin imagen ($url: '', $size: cover, $posicion: center, $repeat: no-repeat, $parallax: false) {
+  @if  $url != '' {
+    background-image: url($url);
+  }
+  background-size: $size;
+  background-position: $posicion;
+  background-repeat: $repeat;
+  @if $parallax == true {
+    background-attachment: fixed;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+body{
+  overflow-x: hidden;
+  background-color: #000;
+  margin: 0 auto;
+  *{
+    font-family: Arial, sans-serif;
+  }
+  p, h1, h2, h3, h4, h5, h6{
+    margin: 0;
+  }
+  a {
+    color: #666;
+    text-decoration: none;
+  }
+  ul, li{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+}
+
+.noScroll{
+  overflow: hidden !important;
+}
+
+.productCard{
+  @include flex(column);
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  perspective: 100px;
+  &.morph{
+    .container{
+      .colorLayer{
+        width: 70%;
+        transform: none;
+        transition-delay: 0s;
+        &:after{
+          opacity: 1;
+          transition-delay: .2s;
+        }
+      }
+      .preview{
+        width: 70%;
+        .brand{
+          top: 50px;
+        }
+        .zoomControl{
+          opacity: 0;
+          pointer-events: none;
+          transition-delay: 0s;
+        }
+        .closePreview{
+          opacity: 1;
+          pointer-events: all;
+          transition-delay: .3s;
+        }
+      }
+    }
+  }
+  .container{
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: #fff;
+    box-sizing: border-box;
+    .info{
+      width: calc(50% - 50px);
+      .name{
+        color: darkgray;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+      .slogan{
+        margin: 10px 0;
+        font-size: 30px;
+      }
+      .price{
+        font-size: 25px;
+        font-weight: 900;
+      }
+      .attribs{
+        .attrib{
+          margin-top: 40px;
+          &.size{
+            .options{
+              .option{
+                &.activ{
+                  color: #fff;
+                  border-color: #f7c531;
+                  background-color: #f7c531;
+                }
+              }
+            }
+          }
+          &.color{
+            .options{
+              .option{
+                width: 25px;
+                height: 25px;
+                position: relative;
+                border: 3px solid currentColor;
+                &:before{
+                  content: "";
+                  position: absolute;
+                  width: 60%;
+                  height: 60%;
+                  border-radius: 2px;
+                  background-color: currentColor;
+                  transform: scale(0);
+                  transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) all .3s;
+                }
+                &.activ{
+                  &:before{
+                    transform: scale(1);
+                  }
+                }
+              }
+            }
+          }
+          .header{
+            margin-bottom: 10px;
+            color: darkgray;
+            font-weight: 600;
+          }
+          .options{
+            @include flex(row, wrap, $jc: flex-start);
+            .option{
+              @include flex;
+              width: 35px;
+              height: 35px;
+              margin: 10px 10px 0 0;
+              font-size: 14px;
+              font-weight: 600;
+              color: darkgray;
+              border-radius: 5px;
+              border: 1px solid darkgray;
+              cursor: pointer;
+              user-select: none;
+              transition: ease all .3s;
+              &:hover{
+                box-shadow: 0 5px 10px 0 rgba(#000,.2);
+              }
+            }
+          }
+        }
+      }
+      .buttons{
+        @include flex(row, wrap, $jc: flex-start);
+        margin-top: 50px;
+        .button{
+          margin: 20px 20px 0 0;
+          min-width: 120px;
+          padding: 15px;
+          border-radius: 5px;
+          color: #fff;
+          font-weight: 600;
+          text-align: center;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          background-color: #3a3a31;
+          user-select: none;
+          cursor: pointer;
+          transition: ease all .3s;
+          &:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px 0 rgba(#000,.5);
+          }
+          &.colored{
+            background-color: #ff5263;
+          }
+        }
+      }
+    }
+    .colorLayer{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background-color: #f7c531;
+      transform: rotateY(-8deg);
+      transform-origin: right;
+      perspective: 100px;
+      transition: ease all .3s .2s;
+      &:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 100%;
+        width: 50%;
+        height: 100%;
+        opacity: 0;
+        background-color: rgba(#000,.7);
+        transition: ease all .3s;
+      }
+    }
+    .preview{
+      @include flex;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      user-select: none;
+      overflow: hidden;
+      transition: ease all .3s;
+      .brand{
+        position: absolute;
+        top: 150px;
+        width: 90%;
+        height: 200px;
+        font-size: 200px;
+        text-align: center;
+        color: rgba(#fff,.2);
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: ease all .3s;
+      }
+      .imgs{
+        @include flex;
+        width: 100%;
+        height: 100%;
+        img{
+          position: absolute;
+          top: 0;
+          width: 70%;
+          height: 100%;
+          object-fit: contain;
+          transform: translate(50%, -10%) rotate(-20deg);
+          opacity: 0;
+          pointer-events: none;
+          transition: ease all .3s;
+          &.activ{
+            opacity: 1;
+            transform: none;
+          }
+        }
+      }
+      .zoomControl{
+        @include flex;
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        background-color: rgba(#000,.3);
+        cursor: pointer;
+        transition: ease all .3s .5s;
+        &:before, &:after{
+          content: "";
+          position: absolute;
+        }
+        &:before{
+          top: 20%;
+          left: 20%;
+          width: 40%;
+          height: 40%;
+          border-radius: 50%;
+          border: 2px solid #fff;
+        }
+        &:after{
+          bottom: 20%;
+          right: 20%;
+          width: 2px;
+          height: 30%;
+          background-color: #fff;
+          transform: rotate(-45deg);
+          transform-origin: bottom left;
+        }
+      }
+      .closePreview{
+        @include flex;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        opacity: 0;
+        cursor: pointer;
+        pointer-events: none;
+        transition: ease all .3s;
+        &:before, &:after{
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: 100%;
+          background-color: #fff;
+          transform: rotate(45deg);
+        }
+        &:after{
+          transform: rotate(-45deg);
+        }
+      }
+      .movControls{
+        @include flex(row);
+        position: absolute;
+        bottom: 150px;
+        .movControl{
+          @include flex($jc: flex-end);
+          width: 40px;
+          height: 30px;
+          margin: 0 15px;
+          position: relative;
+          cursor: pointer;
+          &.left{
+            transform: rotateY(180deg);
+          }
+          &:before{
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+          }
+          &:after{
+            content: "";
+            width: 10px;
+            height: 10px;
+            border: 2px solid #fff;
+            border-left: 0;
+            border-bottom: 0;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px){
+  body{
+    *{
+      cursor: default !important;
+    }
+  }
+  .productCard{
+    &.morph{
+      .container{
+        .colorLayer{
+          width: 100%;
+          height: 80vh;
+        }
+        .preview{
+          width: 100%;
+          height: calc(80vh - 100px);
+          .brand{
+            top: 0;
+          }
+        }
+      }
+    }
+    .container{
+      width: 100%;
+      .info{
+        width: 100%;
+        margin-bottom: 450px;
+        text-align: center;
+        .attribs{
+          .attrib{
+            .options{
+              justify-content: center;
+              .option{
+                margin: 10px;
+              }
+            }
+          }
+        }
+        .buttons{
+          justify-content: center;
+          margin-top: 10px;
+          .button{
+            margin: 20px;
+          }
+        }
+      }
+      .colorLayer{
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 300px;
+        transform: none;
+        &:after{
+          top: -20vh;
+          right: 0;
+          width: 100%;
+          height: 20vh;
+        }
+      }
+      .preview{
+        top: auto;
+        bottom: 50px;
+        width: 100%;
+        height: 400px;
+        .brand{
+          top: 0;
+          left: 0;
+          text-align: left;
+          -webkit-text-stroke: 3px #f7c531;
+        }
+        .closePreview{
+          top: 0;
+        }
+        .movControls{
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 500px){
+  .productCard{
+    .container{
+      .info{
+        margin-bottom: 300px;
+        .buttons{
+          .button{
+            width: 100%;
+            margin: 20px 0 0 0;
+          }
+        }
+      }
+      .colorLayer{
+        height: 200px;
+      }
+      .preview{
+        height: 250px;
+        .brand{
+          height: 150px;
+          font-size: 150px;
+        }
+      }
+    }
+  }
+}

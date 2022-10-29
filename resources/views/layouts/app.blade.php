@@ -20,9 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/component.css') }}" rel="stylesheet">
-
-
-        @livewireStyles
+    @livewireStyles
 
 </head>
 
@@ -41,6 +39,7 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/custom.js') }}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     @livewireScripts
 </body>
 

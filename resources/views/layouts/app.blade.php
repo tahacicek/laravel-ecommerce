@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,9 +21,11 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/component.css') }}" rel="stylesheet">
 
-    @livewireStyles
+
+        @livewireStyles
 
 </head>
+
 <body>
     <div id="app">
         @include('layouts.inc.admin.customer.navbar')
@@ -33,10 +36,12 @@
             @yield('content')
         </main>
     </div>
+
+
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/custom.js') }}" defer></script>
-
     @livewireScripts
 </body>
+
 </html>

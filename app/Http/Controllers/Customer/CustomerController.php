@@ -28,4 +28,19 @@ class CustomerController extends Controller
         }
 
     }
+
+    public function productView(string $category_slug, string $product_slug){
+        $category = \App\Models\Category::where('slug', $category_slug)->first();
+        if ($category) {
+            $product = $category->products()->where('slug', $product_slug)->where("status", 0)->first();
+            if ($product) {
+                return view('customer.collections.product.view', compact('category', 'product'));
+            }else{
+                return redirect()->route("categories")->with('error', 'Ürün Bulunamadı');
+            }
+            return view('customer.collections.product.index', compact('category'));
+        }else{
+            return redirect()->route("categories")->with('error', 'Kategori Bulunamadı');
+        }
+    }
 }

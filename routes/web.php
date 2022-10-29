@@ -16,6 +16,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/kategori', [App\Http\Controllers\Customer\CustomerController::class, 'categories'])->name('categories');
 Route::get('/kategori/{category_slug}', [App\Http\Controllers\Customer\CustomerController::class, 'products'])->name('products');
+Route::get('/kategori/{category_slug}/{product_slug}', [App\Http\Controllers\Customer\CustomerController::class, 'productView'])->name('product.view');
 
 
 Route::group(["middleware" => ["auth", "isAdmin"],  "prefix" => "admin", "as" => "admin."], function () {

@@ -1,5 +1,10 @@
 <div class="py-3 py-md-5 bg-light">
     <div class="container">
+        @if (session()->has('message'))
+            <div class="alert alert-danger">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="row ">
             <div class="col-md-5 mt-3">
                 <div class="bg-white border">
@@ -36,7 +41,8 @@
                                                 name="colorSelection" id="{{ $color->id }}" autocomplete="off" />
                                             <label style="background-color: {{ $color->color->code }}"
                                                 class="btn-circle btn m-1 btn-outline-dark btn-sm btn-rounded"
-                                           wire:click='colorSelected({{ $color->id }})'     for="{{ $color->id }}"></label>
+                                                wire:click='colorSelected({{ $color->id }})'
+                                                for="{{ $color->id }}"></label>
                                         @endforeach
                                     </div>
                                 </div>
@@ -58,10 +64,12 @@
                                 </div>
                             @endif
                         @else
-                            @if($product->quantity)
-                            <label class="label-stock btn-sm py-1 mb-1 btn btn-outline-success text-dark">In Stock</label>
+                            @if ($product->quantity)
+                                <label class="label-stock btn-sm py-1 mb-1 btn btn-outline-success text-dark">In
+                                    Stock</label>
                             @else
-                            <label class="label-stock btn-sm py-1 mb-1 btn btn-outline-danger text-dark">Out of Stock</label>
+                                <label class="label-stock btn-sm py-1 mb-1 btn btn-outline-danger text-dark">Out of
+                                    Stock</label>
                             @endif
                         @endif
 
@@ -77,7 +85,14 @@
                     </div>
                     <div class="mt-2">
                         <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
-                        <a href="" class="btn btn1"> <i class="fa fa-heart"></i> Add To Wishlist </a>
+                        <button type="button" wire:click='addToWishList({{ $product->id }})' class="btn btn1">
+                            <span wire:loading.remove>
+                                <i class="fa fa-heart"></i> Add To Wishlist
+
+                            </span>
+                            <span wire:loading wire:target='addToWishList'>
+                               <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Ekleniyor..
+                             </button>
                     </div>
                     <div class="mt-3">
                         <h5 class="mb-0">Small Description</h5>

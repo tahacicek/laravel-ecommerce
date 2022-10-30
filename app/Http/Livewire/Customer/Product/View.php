@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class View extends Component
 {
-    public $category, $product;
+    public $category, $product, $ProductColorSelectedQuantity, $productColor;
     public function render()
     {
         return view('livewire.customer.product.view', [
@@ -19,5 +19,18 @@ class View extends Component
     {
         $this->category = $category;
         $this->product = $product;
+    }
+
+    public function colorSelected($productColorId)
+    {
+        // dd($productColorId);
+       $productColor = $this->product->productColors()->where('id', $productColorId)->first();
+       $this->ProductColorSelectedQuantity = $productColor->quantity;
+       if($this->ProductColorSelectedQuantity == 0){
+           $this->ProductColorSelectedQuantity = 'outOfStock';
+         }
+        //  $this->product->productColors()->update(['selected' => false]);
+        //     $productColor->update(['selected' => true]);
+
     }
 }

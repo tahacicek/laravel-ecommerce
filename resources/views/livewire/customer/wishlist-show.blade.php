@@ -9,93 +9,50 @@
                                 <thead>
                                     <tr class="text-">
                                         <th class="thumbnail-col"></th>
-                                        <th class="product-col">Product</th>
-                                        <th class="price-col">Price</th>
-                                        <th class="qty-col text-center">Quantity</th>
+                                        <th class="product-col">Ürün</th>
+                                        <th class="price-col">Fiyat</th>
+                                        <th class="qty-col">Quantity</th>
                                         <th class="text-right">Subtotal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="product-row ">
-                                        <td>
-                                            <figure class="product-image-container">
-                                                <a href="#!" class="product-image">
-                                                    <img src="https://saaslandwp.com/demo/wp-content/uploads/2018/12/14-480x480.jpg"
-                                                        alt="product">
-                                                </a>
+                                    @forelse ($wishlist as $item)
+                                        @if ($item->product)
+                                            <tr class="product-row">
+                                                <td>
+                                                    <figure class="product-image-container">
+                                                        <a href="{{ url('kategori/'. $item->product->category->slug.'/'.$item->product->slug) }}" class="product-image">
+                                                            <img
+                                                                src="{{ asset($item->product->productImages[0]->image) }}">
+                                                        </a>
 
-                                                <a href="#" class="btn-remove " title="Remove Product"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                            </figure>
-                                        </td>
-                                        <td class="product-col">
-                                            <h5 class="product-title">
-                                                <a href="product.html">Men Watch</a>
-                                            </h5>
-                                        </td>
-                                        <td>$17.90</td>
-                                        <td>
-                                            <div class="quantity-">
-                                                <div class="input-group">
-                                                    <button class="wishlist-btn ">Sepete Ekle</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-right"><span class="subtotal-price">$17.90</span></td>
-                                    </tr>
+                                                    </figure>
+                                                </td>
+                                                <td class="product-col">
+                                                    <h5 class="product-title">
+                                                        <a href="{{ url('kategori/'. $item->product->category->slug.'/'.$item->product->slug) }}"><strong>{{ $item->product->name }}</strong></a>
+                                                    </h5>
+                                                </td>
+                                                <td><strong>{{ $item->product->selling_price }} ₺</strong></td>
+                                                <td>
 
-                                    <tr class="product-row">
-                                        <td>
-                                            <figure class="product-image-container">
-                                                <a href="#!" class="product-image">
-                                                    <img src="https://saaslandwp.com/demo/wp-content/uploads/2018/12/10-480x480.jpg"
-                                                        alt="product">
-                                                </a>
+                                                    <div class="quantity-">
+                                                        <div class="input-group">
+                                                            <button class="btn btn-block btn-dark">Sepete Ekle</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class=""><a class="btn btn-outline-danger" href="#"><i class="fa fa-times" aria-hidden="true"></i></a></span></td>
+                                            </tr>
+                                        @endif
 
-                                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                            </figure>
-                                        </td>
-                                        <td class="product-col">
-                                            <h5 class="product-title">
-                                                <a href="product.html">Men Watch</a>
-                                            </h5>
-                                        </td>
-                                        <td>$17.90</td>
-                                        <td>
-                                            <div class="quantity-">
-                                                <div class="input-group">
-                                                    <button class="wishlist-btn ">Sepete Ekle</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-right"><span class="subtotal-price">$17.90</span></td>
-                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No items in wishlist</td>
+                                    @endforelse
 
-                                    <tr class="product-row">
-                                        <td>
-                                            <figure class="product-image-container">
-                                                <a href="#!" class="product-image">
-                                                    <img src="https://saaslandwp.com/demo/wp-content/uploads/2018/12/11-480x480.jpg"
-                                                        alt="product">
-                                                </a>
 
-                                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                            </figure>
-                                        </td>
-                                        <td class="product-col">
-                                            <h5 class="product-title">
-                                                <a href="product.html">Men Watch</a>
-                                            </h5>
-                                        </td>
-                                        <td>$17.90</td>
-                                        <td>
-                                            <div class="quantity-">
-                                                <div class="input-group">
-                                                    <button class="wishlist-btn ">Sepete Ekle</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-right"><span class="subtotal-price">$17.90</span></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -110,7 +67,6 @@
                                         <td>Subtotal</td>
                                         <td>$17.90</td>
                                     </tr>
-
 
                                     <tr>
                                         <td colspan="2" class="text-left promo-code-area">

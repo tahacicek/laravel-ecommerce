@@ -947,6 +947,7 @@ p {
 .table.table-wishlist .product-title a {
     color: inherit;
     text-decoration: none;
+
 }
 
 .table.table-cart .subtotal-price,
@@ -1185,11 +1186,10 @@ tbody .product-col {
 /* /* wishlist Button *\ */
 
 .wishlist-btn {
-    background-color: #4f1fff;
+    background-color: black;
     color: #fff;
-    font-weight: 700;
-    padding: 0px 25px;
-    height: 43px;
+    font-weight: 300;
+    height: 35px;
     letter-spacing: -0.018em;
     font-size: 14px;
     border-radius: 50px;
@@ -1197,16 +1197,12 @@ tbody .product-col {
 /* /* wishlist Button  HOvver *\ */
 
 .wishlist-btn:hover {
-    background-color: wheat;
-    color:#4f1fff;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 0px 25px;
-    height: 43px;
+    background-color: #fff;
+    color: black;
+    font-weight: 300;
+    height: 35px;
     letter-spacing: -0.018em;
     font-size: 14px;
-    padding: 0px 25px;
     border-radius: 50px;
-
 }
 

@@ -53,7 +53,7 @@ class View extends Component
 
 
         } else {
-            Toastr::success('Ürünü favorilere eklemek için giriş yapmalısınız.', 'Dikkat !');
+            Toastr::info('Ürünü favorilere eklemek için giriş yapmalısınız.', 'Dikkat !');
             return false;
         }
     }

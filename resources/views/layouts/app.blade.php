@@ -20,6 +20,10 @@
     <!-- Styles -->
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/component.css') }}" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     @livewireStyles
 
 </head>
@@ -35,11 +39,13 @@
         </main>
     </div>
 
+    <!-- JavaScript -->
 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/custom.js') }}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     @livewireScripts
 </body>
 

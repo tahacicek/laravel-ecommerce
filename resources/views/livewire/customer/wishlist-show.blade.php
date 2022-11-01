@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-sm-4 col-md-4">
                         <div class="cart-summary">
-                            <h3>CART TOTALS</h3>
+                            <h3>WİSHLİST TOTALS</h3>
 
                             <table class="table table-totals">
                                 <tbody>
@@ -79,15 +79,14 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="text-left promo-code-area">
-                                            <h3>Promo Code</h3>
+                                            <h3>Help</h3>
                                             <div class="cart-discount">
                                                 <form action="#">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            placeholder="Coupon Code" required="">
+                                                        <textarea type="text" class="form-control form-control-sm"
+                                                            placeholder="Your Message" rows="2" required></textarea>
                                                         <div class="input-group-append">
-                                                            <button class="btn apply-coupon-btn" type="submit">Apply
-                                                                Coupon</button>
+                                                            <button class="btn btn-block apply-coupon-btn btn-success" type="submit"><i class="fa me-1 fa-comments" aria-hidden="true"></i> HELP</button>
                                                         </div>
                                                     </div><!-- End .input-group -->
                                                 </form>
@@ -113,8 +112,7 @@
                             </table>
 
                             <div class="checkout-methods">
-                                <a href="#!" class="btn btn-block btn-dark">Proceed to Checkout
-                                    <i class="fa fa-arrow-right"></i></a>
+                                <a href="#!" class="btn btn-block btn-icon btn-dark">Sepete Ekle ve Devam Et <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div><!-- End .cart-summary -->
                     </div>

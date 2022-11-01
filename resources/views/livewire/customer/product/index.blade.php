@@ -3,10 +3,10 @@
         <div class="col-md-4 mt-5">
             @if ($category->brands)
                 <div class="product-card  ">
-                    <div class="card-header text-center">
+                    <div class="card-header text-white text-center" style=" background-color: #1a3547">
                         <h5>Markalar</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style=" background-color: #70b5cc">
                         <ul class="list-group">
                             @foreach ($category->brands as $brand)
                                 <li class="list-group">
@@ -25,10 +25,10 @@
                     </div>
                 </div>
                 <div class="product-card  ">
-                    <div class="card-header text-center">
+                    <div class="card-header text-white text-center" style=" background-color: #1a3547">
                         <h5>Fiyat</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style=" background-color: #70b5cc">
                         <ul class="list-group">
                             <li class="list-group">
                                 <div class="d-block mx-auto mt-2">
@@ -52,7 +52,7 @@
         </div>
         @forelse ($products as $product)
             <div class="col-md-4 mt-5">
-                <div class="product-card" style="width: 350px">
+                <div class="product-card" style="width: 350px;">
                     @if ($product->quantity > 0)
                         <div class="badges badge-success" style="background-color:green">Stokta Var</div>
                     @else
@@ -80,7 +80,7 @@
                                 <small>{{ $product->original_price }}₺</small>{{ $product->selling_price }}₺
                             </div>
                             <div class="product-links">
-                                <a href=""><i class="fa fa-heart"></i></a>
+                                <button type="button" wire:click='addToWishList({{ $product->id }})' href=""><i class="fa fa-heart"></i></button>
                                 <a href=""><i class="fa fa-shopping-cart"></i></a>
                             </div>
                         </div>

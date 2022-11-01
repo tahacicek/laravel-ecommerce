@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire\Customer\Product;
 
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class Index extends Component
 {
@@ -36,5 +39,25 @@ class Index extends Component
         $this->category = $category;
         // $this->emit('productIndex');
 
+    }
+
+    public function addToWishList($productId)
+    {
+        if (Auth::check()) {
+            if(Wishlist::where('user_id', Auth::id())->where('product_id', $productId)->first()){
+                Toastr::error('Ürün zaten favorilerinizde mevcut', 'Hata');
+            }else{
+                Wishlist::create([
+                    'user_id' => Auth::id(),
+                    'product_id' => $productId
+                ]);
+                Toastr::success('Ürün favorilerinize eklendi', 'Başarılı');
+            }
+
+
+        } else {
+            Toastr::info('Ürünü favorilere eklemek için giriş yapmalısınız.', 'Dikkat !');
+            return false;
+        }
     }
 }

@@ -1,9 +1,9 @@
-<div class="p-3 bg-dark text-white">
-    <div class="flexMain">
+<div class="p-3 bg-dark text-white" >
+    <div class="flexMain" >
         <div class="flex1">
 
         </div>
-        <div class="flex2 text-center">
+        <div class="flex2 text-center" >
             <div class="row">
                 <div class="col-4">
                     <strong><i class="fa fa-phone" aria-hidden="true"></i> 646465165 </strong>
@@ -22,9 +22,9 @@
         </div>
     </div>
 </div>
-<div id="menuHolder">
+<div id="menuHolder" >
     <div role="navigation" class="sticky-top border-bottom border-top" id="mainNavigation">
-        <div class="flexMain">
+        <div class="flexMain" >
             <div class="flex2">
 
                 <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i
@@ -44,7 +44,7 @@
                         <a href="{{ url('/') }}" class="nav-menu-item"><i class="fa fa-home me-3"></i>Ana Sayfa</a>
 
                         <a href="" class="nav-menu-item"><i class="fa fa-shopping-cart me-3"></i>Sepet (0)</a>
-                        <a href="{{ route('wishlist') }}" class="nav-menu-item"><i class="fa fa-heart me-3"></i>Favoriler ({{ $wishlist->count() }})</a>
+                        <a href="{{ route('wishlist') }}" class="nav-menu-item"><i class="fa fa-heart me-3"></i>Favoriler (0) </a>
                         @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -55,7 +55,7 @@
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="blackLink text-white nav-menu-item"
+                                <a class="btn btn-dark  nav-menu-item"
                                     href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
@@ -67,17 +67,17 @@
                                 <i class="fa fa-user"></i> {{ Auth::user()->name }}
 
                             </a>
-                            <ul class="dropdown-menu drop dropdown-content" aria-labelledby="navbarDropdown">
-                                <li><a class=" btn-sm dropdown-item  dropbtn" href="#"><i class="fa iconss fa-user"></i> <small>Profil</small></a></li>
-                                <li><a class="dropdown-item whiteLink siteLink dropbtn" href="#"><i
+                            <ul class="dropdown-menu  dropdown-content" aria-labelledby="navbarDropdown">
+                                <li><a class="btn btn-dark " href="#"><i class="fa  me-1 fa-user"></i> <small>Profil</small></a></li>
+                                <li><a class="btn btn-dark " href="#"><i
                                             class="fa iconss fa-list"></i> My Orders</a>
                                 </li>
-                                <li><a class=" dropdown-item dropbtn" href="#"><i class="fa iconss fa-heart"></i>  My Wishlist</a>
+                                <li><a class="btn btn-dark " href="#"><i class="fa me-1 fa-heart"></i>  My Wishlist</a>
                                 </li>
-                                <li><a class=" dropdown-item dropbtn" href="#"><i class="fa iconss fa-shopping-cart"></i> My
+                                <li><a class="btn btn-dark " href="#"><i class="fa me-1 fa-shopping-cart"></i> My
                                         Cart</a></li>
                                 <li>
-                                    <a class="dropdown-item dropbtn" href="{{ route('logout') }}"
+                                    <a class="btn btn-dark " href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">
                                         <i class="fa iconss fa-sign-out"></i>
@@ -102,7 +102,7 @@
         </div>
 
     </div>
- <div class="main-navbar shadow-sm sticky-top">
+ <div class="main-navbar shadow-sm sticky-top" >
 
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -110,7 +110,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link nav-menu-item" href="#">Home</a>
@@ -144,13 +144,13 @@
             </div>
         </nav>
     </div>
-    <div id="menuDrawer">
+    <div id="menuDrawer" style=" background-color: #1a3547">
         <div class="p-4 border-bottom">
             <div class='row'>
 
                 <div class="col">
 
-                    <select class="noStyle">
+                    <select class="noStyle form-select form-select-sm"  aria-label="Default select example">
                         <option value="english">English</option>
                         <option value="spanish">Spanish</option>
                         <option value="french">French</option>
@@ -164,17 +164,17 @@
                 </div>
                 <form class="searchform cf mt-3 mb-1">
                     <input type="text"  placeholder="Ara...">
-                    <button class="col-md-2" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <button style=" background-color: #0998b8" class="col-md-2" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                   </form>
             </div>
 
         </div>
 
-        <div cl style="text-transform: uppercase;">
-            <a href="{{ route('categories') }}" class="nav-menu-item"><i
+        <div class="" style="text-transform: uppercase;">
+            <a href="{{ route('categories') }}" class="nav-menu-item text-white"><i
                 class="fa fa-globe me-3"></i>Tüm Kategoriler</a>
             @foreach ($categories as $category)
-                <a target="_blank" href="{{ url('/kategori/' . $category->slug) }}" class="nav-menu-item"><i
+                <a target="_blank" href="{{ url('/kategori/' . $category->slug) }}" class="nav-menu-item text-white"><i
                         class="fa fa-bars me-3"></i>{{ $category->name }}</a>
             @endforeach
         </div>

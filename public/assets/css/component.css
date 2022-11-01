@@ -164,6 +164,7 @@ button.siteLink {
 .dropdown-content a:hover {
     background-color: #f1f1f1;
     white-space: nowrap;
+    color: #000;
     overflow:visible;
 
 }
@@ -648,6 +649,23 @@ p {
     transition: 0.3s;
     font-size: 17px;
 }
+
+.product-links button  {
+    display: inline-block;
+    margin-left: 5px;
+    color: #8f6f6fa0;
+    transition: 0.3s;
+    font-size: 17px;
+    border: 0px;
+    background-color: white;
+}
+
+.product-links button:hover  {
+    color: red;
+    border: 0px;
+}
+
+
 
 .product-links a:hover {
     color: red;

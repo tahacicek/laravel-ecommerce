@@ -84,7 +84,7 @@
                                                 <form action="#">
                                                     <div class="input-group">
                                                         <textarea type="text" class="form-control form-control-sm"
-                                                            placeholder="Your Message" rows="2" required></textarea>
+                                                            placeholder="Your Message" rows="1" required></textarea>
                                                         <div class="input-group-append">
                                                             <button class="btn btn-block apply-coupon-btn btn-success" type="submit"><i class="fa me-1 fa-comments" aria-hidden="true"></i> HELP</button>
                                                         </div>

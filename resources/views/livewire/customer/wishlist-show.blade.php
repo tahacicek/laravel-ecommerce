@@ -11,8 +11,7 @@
                                         <th class="thumbnail-col"></th>
                                         <th class="product-col">Ürün</th>
                                         <th class="price-col">Fiyat</th>
-                                        <th class="qty-col">Quantity</th>
-                                        <th class="text-right">Subtotal</th>
+                                        <th class="text-end">İşlem</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -21,7 +20,8 @@
                                             <tr class="product-row">
                                                 <td>
                                                     <figure class="product-image-container">
-                                                        <a href="{{ url('kategori/'. $item->product->category->slug.'/'.$item->product->slug) }}" class="product-image">
+                                                        <a href="{{ url('kategori/' . $item->product->category->slug . '/' . $item->product->slug) }}"
+                                                            class="product-image">
                                                             <img
                                                                 src="{{ asset($item->product->productImages[0]->image) }}">
                                                         </a>
@@ -30,7 +30,8 @@
                                                 </td>
                                                 <td class="product-col">
                                                     <h5 class="product-title">
-                                                        <a href="{{ url('kategori/'. $item->product->category->slug.'/'.$item->product->slug) }}"><strong>{{ $item->product->name }}</strong></a>
+                                                        <a
+                                                            href="{{ url('kategori/' . $item->product->category->slug . '/' . $item->product->slug) }}"><strong>{{ $item->product->name }}</strong></a>
                                                     </h5>
                                                 </td>
                                                 <td><strong>{{ $item->product->selling_price }} ₺</strong></td>
@@ -43,16 +44,25 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <span class=""><a class="btn btn-outline-danger" href="#"><i class="fa fa-times" aria-hidden="true"></i></a></span></td>
+                                                    <button type="button"
+                                                        wire:click='removeWishlistItem({{ $item->id }})'
+                                                        class="btn btn-outline-danger">
+                                                        <span wire:loading.remove><i class="fa fa-times"
+                                                                aria-hidden="true"></i>
+                                                        </span>
+                                                        <span wire:loading wire:target='removeWishlistItem'>
+                                                            <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                                                            Siliniyor..
+                                                        </span>
+
+                                                    </button>
+                                                </td>
                                             </tr>
                                         @endif
-
                                     @empty
                                         <tr>
                                             <td colspan="5" class="text-center">No items in wishlist</td>
                                     @endforelse
-
-
                                 </tbody>
                             </table>
                         </div>

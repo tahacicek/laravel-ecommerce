@@ -92,6 +92,7 @@
                             </span>
                             <span wire:loading wire:target='addToWishList'>
                                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Ekleniyor..
+                            </span>
                              </button>
                     </div>
                     <div class="mt-3">

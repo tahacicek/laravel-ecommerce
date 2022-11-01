@@ -74,14 +74,12 @@
                             <table class="table table-totals">
                                 <tbody>
                                     <tr>
-                                        <td>Subtotal</td>
-                                        <td>$17.90</td>
+                                        <td>Toplam Ürün</td>
+                                        <td>{{ $wishlist->count() }} Adet</td>
                                     </tr>
-
                                     <tr>
                                         <td colspan="2" class="text-left promo-code-area">
                                             <h3>Promo Code</h3>
-
                                             <div class="cart-discount">
                                                 <form action="#">
                                                     <div class="input-group">
@@ -94,28 +92,23 @@
                                                     </div><!-- End .input-group -->
                                                 </form>
                                             </div>
-
-
                                             <button type="submit" class="btn btn-shop btn-update-total">
                                                 Update Totals
                                             </button>
                                         </td>
                                     </tr>
                                 </tbody>
-
                                 <tfoot>
+                                    @forelse ($wishlist as $item)
+
+
                                     <tr>
-                                        <td>Other charges</td>
-                                        <td>$17.90</td>
+                                        <td>{{ $item->product->name }}</td>
+                                        <td>{{ $item->product->selling_price }} ₺</td>
                                     </tr>
-                                    <tr>
-                                        <td>Delivery charges</td>
-                                        <td>$17.90</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Total</b></td>
-                                        <td><b>$17.90</b></td>
-                                    </tr>
+                                    @empty
+
+                                    @endforelse
                                 </tfoot>
                             </table>
 

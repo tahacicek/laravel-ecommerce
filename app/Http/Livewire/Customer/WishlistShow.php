@@ -26,6 +26,7 @@ class WishlistShow extends Component
         // Toastr::success("Ürün favorilerden silindi", "Başarılı");
 
         $wishlist = Wishlist::where("user_id", auth()->user()->id)->where("id", $wishlistId)->first();
+        $this->emit('removeWishlistItem');
         if ($wishlist) {
             $wishlist->delete();
             Toastr::success("Ürün favorilerden silindi", "Başarılı");

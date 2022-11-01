@@ -44,7 +44,13 @@
                         <a href="{{ url('/') }}" class="nav-menu-item"><i class="fa fa-home me-3"></i>Ana Sayfa</a>
 
                         <a href="" class="nav-menu-item"><i class="fa fa-shopping-cart me-3"></i>Sepet (0)</a>
-                        <a href="{{ route('wishlist') }}" class="nav-menu-item"><i class="fa fa-heart me-3"></i>Favoriler (0) </a>
+                        <a href="{{ route('wishlist') }}" class="nav-menu-item"><i class="fa fa-heart me-3"></i> @if (Auth::check())
+                         Favoriler   (<livewire:customer.wishlist-count />)
+                            @else
+                            Favoriler (0)
+                            @endif
+
+                       </a>
                         @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

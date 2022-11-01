@@ -48,6 +48,7 @@ class View extends Component
                     'user_id' => Auth::id(),
                     'product_id' => $productId
                 ]);
+                $this->emit('removeWishlistItem');
                 Toastr::success('Ürün favorilerinize eklendi', 'Başarılı');
             }
 
